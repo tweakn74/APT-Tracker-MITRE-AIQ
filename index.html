@@ -1371,15 +1371,15 @@
         const aptDatabase = {
             'FIN7': {
                 name: 'FIN7',
-                aliases: 'Carbanak, Carbon Spider, Navigator Group, Sangria Tempest',
+                aliases: 'Carbon Spider, Navigator Group, Sangria Tempest, Elbrus',
                 attribution: 'Eastern European cybercrime syndicate, suspected Russian-speaking',
                 activeSince: '2013',
                 victims: '100+ companies, primarily in U.S., Europe, and Australia',
-                primaryTargets: 'Point-of-Sale systems, payment card data, financial services',
-                industries: ['Finance', 'Retail', 'Hospitality', 'Technology'],
+                primaryTargets: 'Point-of-Sale systems, payment card data, retail and hospitality sectors',
+                industries: ['Retail', 'Hospitality', 'Finance', 'Technology'],
                 attackTypes: ['Ransomware', 'Data Theft', 'Financial Crime'],
                 targetSelection: 'High-value retail chains, hotels, restaurants with POS systems',
-                keyMalware: 'Carbanak backdoor, GRIFFON, PILLOWMINT, BOOSTWRITE, REvil ransomware',
+                keyMalware: 'GRIFFON, PILLOWMINT, BOOSTWRITE, REvil ransomware, Carbanak malware (shared tool)',
                 ransomwareTies: 'Deployed REvil, DarkSide, BlackMatter ransomware in recent campaigns',
                 mitreTTPs: 'T1566 (Phishing), T1059 (Command/Scripting), T1003 (Credential Dumping), T1486 (Ransomware)',
                 techniques: [
@@ -1631,6 +1631,54 @@
                     countries: '35+',
                     techniques: '12',
                     activeSince: '2012'
+                }
+            },
+            'Carbanak': {
+                name: 'Carbanak',
+                aliases: 'Anunak, GOLD NIAGARA',
+                attribution: 'Eastern European cybercrime syndicate, financially motivated',
+                activeSince: '2013',
+                victims: 'Banks and financial institutions worldwide, estimated €1 billion stolen',
+                primaryTargets: 'Banks, ATMs, financial transaction systems, SWIFT infrastructure',
+                industries: ['Finance', 'Banking'],
+                attackTypes: ['Financial Crime', 'Data Theft', 'ATM Jackpotting'],
+                targetSelection: 'Banks and financial institutions with vulnerable networks and ATM infrastructure',
+                keyMalware: 'Carbanak malware, AmmyyAdmin, Team Viewer, Mimikatz, PsExec',
+                ransomwareTies: 'None - focused on direct financial theft, not ransomware',
+                mitreTTPs: 'T1566 (Phishing), T1078 (Valid Accounts), T1003 (Credential Dumping), T1219 (Remote Access Tools)',
+                techniques: [
+                    { id: 'T1589.002', name: 'Gather Victim Identity Information: Email Addresses', tactic: 'Reconnaissance', step: 'Bank employee email harvesting', search: 'carbanak email harvesting banking', attackiq: 'Gather Victim Identity: Email Addresses (T1589.002)' },
+                    { id: 'T1566.001', name: 'Phishing: Spearphishing Attachment', tactic: 'Initial Access', step: 'Spearphishing bank employees', search: 'carbanak spearphishing banking', attackiq: 'Phishing: Spearphishing Attachment (T1566.001)' },
+                    { id: 'T1204.002', name: 'User Execution: Malicious File', tactic: 'Execution', step: 'Malicious document execution', search: 'carbanak malicious document banking', attackiq: 'User Execution: Malicious File (T1204.002)' },
+                    { id: 'T1059.003', name: 'Command/Scripting Interpreter: Windows Command Shell', tactic: 'Execution', step: 'Command shell execution', search: 'carbanak cmd shell banking', attackiq: 'Command/Scripting Interpreter: Windows Command Shell (T1059.003)' },
+                    { id: 'T1003.001', name: 'OS Credential Dumping: LSASS Memory', tactic: 'Credential Access', step: 'Credential dumping with Mimikatz', search: 'carbanak mimikatz banking', attackiq: 'OS Credential Dumping: LSASS Memory (T1003.001)' },
+                    { id: 'T1543.003', name: 'Create or Modify System Process: Windows Service', tactic: 'Persistence', step: 'Malicious service installation', search: 'carbanak service persistence banking', attackiq: 'Create or Modify System Process: Windows Service (T1543.003)' },
+                    { id: 'T1078', name: 'Valid Accounts', tactic: 'Privilege Escalation', step: 'Stolen banking credentials', search: 'carbanak stolen credentials banking', attackiq: 'Valid Accounts (T1078)' },
+                    { id: 'T1057', name: 'Process Discovery', tactic: 'Discovery', step: 'Banking system reconnaissance', search: 'carbanak process discovery banking', attackiq: 'Process Discovery (T1057)' },
+                    { id: 'T1219', name: 'Remote Access Software', tactic: 'Lateral Movement', step: 'AmmyyAdmin/TeamViewer lateral movement', search: 'carbanak ammyyadmin teamviewer', attackiq: 'Remote Access Software (T1219)' },
+                    { id: 'T1113', name: 'Screen Capture', tactic: 'Collection', step: 'Banking system screen capture', search: 'carbanak screen capture banking', attackiq: 'Screen Capture (T1113)' },
+                    { id: 'T1041', name: 'Exfiltration Over C2 Channel', tactic: 'Exfiltration', step: 'Data exfiltration via C2', search: 'carbanak c2 exfiltration banking', attackiq: 'Exfiltration Over C2 Channel (T1041)' },
+                    { id: 'T1565.001', name: 'Data Manipulation: Stored Data Manipulation', tactic: 'Impact', step: 'ATM jackpotting and fraudulent transactions', search: 'carbanak atm jackpotting swift fraud', attackiq: 'Data Manipulation: Stored Data (T1565.001)' }
+                ],
+                breakdown: [
+                    'Reconnaissance: Email harvesting of bank employees, network profiling, ATM infrastructure mapping',
+                    'Initial Access: Spearphishing bank employees with malicious attachments',
+                    'Execution: User-triggered malware execution via macro-enabled documents',
+                    'Command Execution: Windows command shell for post-exploitation activities',
+                    'Credential Access: Mimikatz credential dumping, password harvesting',
+                    'Persistence: Windows service installations, registry modifications',
+                    'Privilege Escalation: Use of stolen banking employee credentials for elevated access',
+                    'Discovery: Banking system reconnaissance, process discovery, network mapping',
+                    'Lateral Movement: AmmyyAdmin and TeamViewer for remote access and lateral movement',
+                    'Collection: Screen capture of banking systems, transaction monitoring, SWIFT access',
+                    'Exfiltration: Data exfiltration over C2 channels',
+                    'Impact: ATM jackpotting, fraudulent SWIFT transactions, direct financial theft'
+                ],
+                stats: {
+                    victims: '100+',
+                    countries: '40+',
+                    techniques: '12',
+                    activeSince: '2013'
                 }
             },
             'Wizard Spider': {
