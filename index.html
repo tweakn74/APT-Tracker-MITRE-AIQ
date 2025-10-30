@@ -310,6 +310,12 @@
             color: white;
         }
 
+        .chain-box.attackiq-tactic {
+            background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+            color: white;
+            border: 3px solid #be185d;
+        }
+
         .technique-id {
             font-weight: bold;
             font-size: 0.9em;
@@ -1177,6 +1183,14 @@
                     </div>
                     <!-- Dynamic AttackIQ scenarios will be inserted here (max 14 columns) -->
                 </div>
+
+                <!-- Row 6: AttackIQ Tactic Buckets -->
+                <div class="chain-row" id="attackiqTacticRow">
+                    <div class="chain-box initial">
+                        <div class="technique-name" style="font-size: 0.75em;">AttackIQ<br>Tactics</div>
+                    </div>
+                    <!-- Dynamic AttackIQ tactic buckets will be inserted here (max 14 columns) -->
+                </div>
             </div>
         </div>
 
@@ -1915,15 +1929,39 @@
                 }
             }
 
+            // Helper function to map MITRE tactics to AttackIQ tactic buckets
+            function getAttackIQTactic(mitreTactic) {
+                // AttackIQ has 12 tactics (missing Reconnaissance and Resource Development)
+                const tacticMap = {
+                    'Reconnaissance': 'N/A',
+                    'Resource Development': 'N/A',
+                    'Initial Access': 'Initial Access',
+                    'Execution': 'Execution',
+                    'Persistence': 'Persistence',
+                    'Privilege Escalation': 'Privilege Escalation',
+                    'Defense Evasion': 'Defense Evasion',
+                    'Credential Access': 'Credential Access',
+                    'Discovery': 'Discovery',
+                    'Lateral Movement': 'Lateral Movement',
+                    'Collection': 'Collection',
+                    'Command and Control': 'Command And Control',
+                    'Exfiltration': 'Exfiltration',
+                    'Impact': 'Impact'
+                };
+                return tacticMap[mitreTactic] || 'N/A';
+            }
+
             // Generate exactly 14 columns for each row - one per tactic
             let mitreBoxes = '';
             let stepBoxes = '';
             let searchBoxes = '';
             let attackiqBoxes = '';
+            let attackiqTacticBoxes = '';
 
             // Iterate through all 14 tactics and display techniques for each
             tactics.forEach(tactic => {
                 const techniquesForTactic = techniquesByTactic[tactic];
+                const attackiqTactic = getAttackIQTactic(tactic);
 
                 if (techniquesForTactic.length > 0) {
                     // Use the first technique for this tactic
@@ -1947,8 +1985,19 @@
                     attackiqBoxes += `<span class="arrow">→</span><div class="chain-box attackiq">
                         <div class="technique-name" style="font-size: 0.72em;">${attackiqText}</div>
                     </div>`;
+
+                    // Add AttackIQ tactic bucket
+                    if (attackiqTactic === 'N/A') {
+                        attackiqTacticBoxes += `<span class="arrow">→</span><div class="chain-box attackiq-tactic" style="opacity: 0.3;">
+                            <div class="technique-name" style="font-size: 0.75em; font-style: italic;">N/A</div>
+                        </div>`;
+                    } else {
+                        attackiqTacticBoxes += `<span class="arrow">→</span><div class="chain-box attackiq-tactic">
+                            <div class="technique-name" style="font-size: 0.75em;">${attackiqTactic}</div>
+                        </div>`;
+                    }
                 } else {
-                    // This tactic has no techniques - show N/A only in AttackIQ row
+                    // This tactic has no techniques - show N/A or dash
                     mitreBoxes += `<span class="arrow">→</span><div class="chain-box mitre" style="opacity: 0.3;">
                         <div class="technique-name" style="font-style: italic;">-</div>
                     </div>`;
@@ -1964,10 +2013,14 @@
                     attackiqBoxes += `<span class="arrow">→</span><div class="chain-box attackiq" style="opacity: 0.3;">
                         <div class="technique-name" style="font-style: italic;">N/A</div>
                     </div>`;
+
+                    attackiqTacticBoxes += `<span class="arrow">→</span><div class="chain-box attackiq-tactic" style="opacity: 0.3;">
+                        <div class="technique-name" style="font-size: 0.75em; font-style: italic;">-</div>
+                    </div>`;
                 }
             });
 
-            // Update all 4 dynamic rows with exactly 14 columns each
+            // Update all 5 dynamic rows with exactly 14 columns each
             // Clear existing content and rebuild from scratch to prevent duplication
             mitreRow.innerHTML = `
                 <div class="chain-box initial">
@@ -1992,6 +2045,13 @@
                     <div class="technique-name" style="font-size: 0.7em;">AttackIQ<br>Scenarios</div>
                 </div>
             ` + attackiqBoxes;
+
+            const attackiqTacticRow = document.getElementById('attackiqTacticRow');
+            attackiqTacticRow.innerHTML = `
+                <div class="chain-box initial">
+                    <div class="technique-name" style="font-size: 0.75em;">AttackIQ<br>Tactics</div>
+                </div>
+            ` + attackiqTacticBoxes;
 
             // Update breakdown
             const breakdownList = document.getElementById('breakdownList');
