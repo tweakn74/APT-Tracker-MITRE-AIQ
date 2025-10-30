@@ -13,41 +13,79 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
-            color: #ffffff;
+            background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
             padding: 40px 20px;
-            line-height: 1.6;
+            min-height: 100vh;
         }
 
         .container {
-            max-width: 2200px;
+            max-width: 100%;
             margin: 0 auto;
-            width: 98%;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
         }
 
-        /* Header Section */
         .header {
             text-align: center;
-            margin-bottom: 40px;
-            padding: 30px;
-            background: linear-gradient(135deg, #1e1e1e 0%, #2d2d3a 100%);
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 4px solid #dc2626;
         }
 
         .header h1 {
-            font-size: 3em;
-            margin-bottom: 15px;
-            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 50%, #6c5ce7 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #1f2937;
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .header .subtitle {
+            color: #dc2626;
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-bottom: 8px;
         }
 
         .header p {
-            font-size: 1.2em;
-            color: #b8b8d1;
-            margin-bottom: 20px;
+            color: #6b7280;
+            font-size: 1em;
+            font-weight: 600;
+        }
+
+        .apt-info {
+            background: #fee2e2;
+            border: 3px solid #dc2626;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .apt-info h2 {
+            color: #991b1b;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .apt-info .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            text-align: left;
+        }
+
+        .apt-info .info-item {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            border: 2px solid #fca5a5;
+        }
+
+        .apt-info .info-item strong {
+            color: #991b1b;
         }
 
         /* Filter Controls */
@@ -55,11 +93,11 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
-            margin-bottom: 40px;
-            padding: 25px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
         }
 
         .filter-group {
@@ -70,7 +108,7 @@
         .filter-group label {
             font-weight: 600;
             margin-bottom: 8px;
-            color: #ff6b9d;
+            color: #dc2626;
             font-size: 0.95em;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -78,89 +116,285 @@
 
         .filter-group select {
             padding: 12px 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(192, 108, 132, 0.3);
+            background: white;
+            border: 2px solid #dc2626;
             border-radius: 8px;
-            color: #ffffff;
+            color: #1f2937;
             font-size: 1em;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .filter-group select:hover {
-            border-color: #ff6b9d;
-            background: rgba(255, 255, 255, 0.15);
+            border-color: #991b1b;
+            background: #fef2f2;
         }
 
         .filter-group select:focus {
             outline: none;
-            border-color: #c06c84;
-            box-shadow: 0 0 15px rgba(192, 108, 132, 0.4);
+            border-color: #dc2626;
+            box-shadow: 0 0 15px rgba(220, 38, 38, 0.3);
         }
 
-        /* Threat Profile Section */
         .threat-profile {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 25px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 107, 157, 0.2);
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            border: 3px solid #dc2626;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
         }
 
         .threat-profile h2 {
-            color: #ff6b9d;
-            margin-bottom: 25px;
-            font-size: 2em;
+            color: #f472b6;
+            font-size: 1.5em;
+            margin-bottom: 20px;
             text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
         }
 
-        .profile-grid {
+        .threat-profile .profile-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
         }
 
-        .profile-box {
-            background: rgba(255, 255, 255, 0.05);
+        .threat-profile .profile-item {
+            background: rgba(31, 41, 55, 0.8);
             padding: 12px;
-            border-radius: 10px;
-            border-left: 4px solid #ff6b9d;
+            border-radius: 8px;
+            border: 2px solid #374151;
+            transition: all 0.3s ease;
+        }
+
+        .threat-profile .profile-item:hover {
+            border-color: #dc2626;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+        }
+
+        .threat-profile .profile-item strong {
+            color: #f9a8d4;
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.85em;
+        }
+
+        .threat-profile .profile-item span {
+            color: #e5e7eb;
+            font-size: 0.85em;
+            line-height: 1.4;
+        }
+
+        /* Legacy profile-box styles for compatibility */
+        .profile-box {
+            background: rgba(31, 41, 55, 0.8);
+            padding: 12px;
+            border-radius: 8px;
+            border: 2px solid #374151;
             transition: all 0.3s ease;
         }
 
         .profile-box:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateX(5px);
-            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.3);
+            border-color: #dc2626;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
         }
 
         .profile-box h3 {
-            color: #ff6b9d;
-            font-size: 0.9em;
+            color: #f9a8d4;
+            font-size: 0.85em;
             margin-bottom: 6px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         .profile-box p {
-            color: #e0e0e0;
+            color: #e5e7eb;
+            font-size: 0.85em;
+            line-height: 1.4;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: #f8fafc;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .legend-box {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            border: 3px solid #1f2937;
+        }
+
+        .legend-box.mitre { background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); }
+        .legend-box.steps { background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%); }
+        .legend-box.search { background: linear-gradient(135deg, #34d399 0%, #10b981 100%); }
+        .legend-box.attackiq { background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%); }
+
+        .attack-chain {
+            overflow-x: auto;
+            padding: 20px 0;
+        }
+
+        .chain-wrapper {
+            min-width: max-content;
+        }
+
+        .chain-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+
+        .chain-box {
+            min-width: 180px;
+            min-height: 140px;
+            border-radius: 12px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border: 3px solid #1f2937;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .chain-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+        }
+
+        .chain-box.mitre {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: #1f2937;
+        }
+
+        .chain-box.steps {
+            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+            color: white;
+        }
+
+        .chain-box.search {
+            background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+            color: #1f2937;
+        }
+
+        .chain-box.attackiq {
+            background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+            color: white;
+        }
+
+        .chain-box.initial {
+            background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%);
+            color: white;
+            min-width: 140px;
+        }
+
+        .technique-id {
+            font-weight: bold;
+            font-size: 0.85em;
+            margin-bottom: 6px;
+        }
+
+        .technique-name {
+            font-weight: 600;
+            font-size: 0.85em;
+            line-height: 1.3;
+        }
+
+        .arrow {
+            font-size: 2em;
+            color: #dc2626;
+            font-weight: bold;
+        }
+
+        .key-points {
+            background: #f0fdf4;
+            border: 3px solid #10b981;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .key-points h3 {
+            color: #065f46;
+            margin-bottom: 18px;
+            font-size: 1.4em;
+        }
+
+        .key-points ul {
+            list-style-position: inside;
+            color: #064e3b;
+        }
+
+        .key-points li {
+            margin-bottom: 12px;
+            line-height: 1.6;
             font-size: 0.95em;
         }
 
-        /* Attack Chain Diagram */
-        .attack-chain {
-            margin: 40px 0;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 15px;
+        .attack-paths {
+            background: #eff6ff;
+            border: 3px solid #3b82f6;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 20px;
         }
 
-        .attack-chain h2 {
-            color: #ff6b9d;
+        .attack-paths h3 {
+            color: #1e40af;
+            margin-bottom: 18px;
+            font-size: 1.4em;
+        }
+
+        .path-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border: 2px solid #93c5fd;
+            color: #1e3a8a;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+
+        .resources-section {
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            border: 3px solid #6366f1;
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 30px;
             margin-bottom: 30px;
+        }
+
+        .resources-section h3 {
+            color: #3730a3;
+            margin-bottom: 20px;
+            font-size: 1.5em;
             text-align: center;
-            font-size: 2em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .chain-container {
@@ -527,23 +761,172 @@
         }
 
         .resource-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: white;
             padding: 20px;
             border-radius: 10px;
-            border: 1px solid rgba(192, 108, 132, 0.2);
+            border: 2px solid #c7d2fe;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
         }
 
         .resource-card:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            border-color: #818cf8;
         }
 
-        .resource-card h3 {
-            color: #ff6b9d;
+        .resource-card h4 {
+            color: #4338ca;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .resource-card .icon {
+            font-size: 1.3em;
+        }
+
+        .resource-card p {
+            color: #4b5563;
+            font-size: 0.9em;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .resource-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .resource-link {
+            display: inline-block;
+            color: #4f46e5;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            padding: 8px 12px;
+            background: #eef2ff;
+            border-radius: 6px;
+            border: 1px solid #c7d2fe;
+            transition: all 0.2s ease;
+        }
+
+        .resource-link:hover {
+            background: #4f46e5;
+            color: white;
+            transform: translateX(4px);
+        }
+
+        .attackiq-info {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 3px solid #9333ea;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .attackiq-info h4 {
+            color: #6b21a8;
             margin-bottom: 15px;
             font-size: 1.2em;
+        }
+
+        .attackiq-info ul {
+            list-style-position: inside;
+            color: #581c87;
+        }
+
+        .attackiq-info li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+            font-size: 0.92em;
+        }
+
+        .attackiq-info .highlight {
+            background: #e9d5ff;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 12px;
+            border-left: 4px solid #9333ea;
+            font-size: 0.9em;
+        }
+
+        .search-guide {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border: 3px solid #10b981;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 25px;
+        }
+
+        .search-guide h4 {
+            color: #065f46;
+            margin-bottom: 18px;
+            font-size: 1.2em;
+        }
+
+        .search-guide .search-section {
+            background: white;
+            padding: 18px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #10b981;
+        }
+
+        .search-guide .search-section h5 {
+            color: #047857;
+            margin-bottom: 12px;
+            font-size: 1em;
+        }
+
+        .search-guide .search-example {
+            background: #f0fdf4;
+            padding: 10px 14px;
+            border-radius: 6px;
+            margin: 8px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            color: #064e3b;
+            border: 1px solid #86efac;
+        }
+
+        .search-guide .search-tip {
+            background: #fef3c7;
+            padding: 10px 14px;
+            border-radius: 6px;
+            margin-top: 12px;
+            border-left: 3px solid #f59e0b;
+            font-size: 0.88em;
+            color: #78350f;
+        }
+
+        .search-guide ul {
+            margin-left: 20px;
+            color: #065f46;
+        }
+
+        .search-guide li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+            font-size: 0.9em;
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding: 25px;
+            background: #fee2e2;
+            border-radius: 12px;
+            border: 3px solid #dc2626;
+            text-align: center;
+        }
+
+        .footer p {
+            color: #1f2937;
+            margin-bottom: 8px;
+            line-height: 1.6;
         }
 
         .resource-link {
@@ -630,8 +1013,9 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🎯 Dynamic APT Threat Intelligence Dashboard</h1>
-            <p>Interactive threat actor profiling with MITRE ATT&CK mapping, AttackIQ scenarios, and multi-dimensional filtering</p>
+            <h1>Dynamic APT Threat Intelligence Dashboard</h1>
+            <div class="subtitle">MITRE ATT&CK Mapped with AttackIQ Emulation</div>
+            <p>Interactive threat actor profiling with complete kill chain mapping and security testing scenarios</p>
         </div>
 
         <!-- Filter Controls -->
@@ -668,39 +1052,58 @@
             </div>
         </div>
 
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-box mitre"></div>
+                <span><strong>MITRE ATT&CK Techniques</strong></span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box steps"></div>
+                <span><strong>Attack Steps</strong></span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box search"></div>
+                <span><strong>Search Terms for SIEM/EDR</strong></span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box attackiq"></div>
+                <span><strong>AttackIQ Scenario Names</strong></span>
+            </div>
+        </div>
+
         <!-- Attack Chain Visualization -->
         <div class="attack-chain">
-            <h2>📊 Attack Chain Visualization</h2>
-            <div class="chain-container">
-                <div class="chain-row mitre-row" id="mitreRow">
-                    <!-- Dynamic MITRE techniques -->
+            <div class="chain-wrapper">
+                <!-- Row 1: MITRE ATT&CK Techniques -->
+                <div class="chain-row" id="mitreRow">
+                    <div class="chain-box initial">
+                        <div class="technique-name">MITRE<br>Techniques</div>
+                    </div>
+                    <!-- Dynamic MITRE techniques will be inserted here -->
                 </div>
-                <div class="chain-row step-row" id="stepRow">
-                    <!-- Dynamic attack steps -->
+
+                <!-- Row 2: Attack Steps -->
+                <div class="chain-row" id="stepRow">
+                    <div class="chain-box initial">
+                        <div class="technique-name">Attack<br>Steps</div>
+                    </div>
+                    <!-- Dynamic attack steps will be inserted here -->
                 </div>
-                <div class="chain-row search-row" id="searchRow">
-                    <!-- Dynamic search terms -->
+
+                <!-- Row 3: Search Terms -->
+                <div class="chain-row" id="searchRow">
+                    <div class="chain-box initial">
+                        <div class="technique-name" style="font-size: 0.75em;">SIEM/EDR<br>Search Terms</div>
+                    </div>
+                    <!-- Dynamic search terms will be inserted here -->
                 </div>
-                <div class="chain-row attackiq-row" id="attackiqRow">
-                    <!-- Dynamic AttackIQ scenarios -->
-                </div>
-            </div>
-            <div class="legend">
-                <div class="legend-item">
-                    <div class="legend-color" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);"></div>
-                    <span>MITRE ATT&CK Techniques</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-color" style="background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);"></div>
-                    <span>Attack Steps</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-color" style="background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);"></div>
-                    <span>Search Terms</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-color" style="background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);"></div>
-                    <span>AttackIQ Scenarios</span>
+
+                <!-- Row 4: AttackIQ Scenario Names -->
+                <div class="chain-row" id="attackiqRow">
+                    <div class="chain-box initial">
+                        <div class="technique-name" style="font-size: 0.7em;">AttackIQ<br>Scenarios</div>
+                    </div>
+                    <!-- Dynamic AttackIQ scenarios will be inserted here -->
                 </div>
             </div>
         </div>
@@ -1325,21 +1728,38 @@
             const searchRow = document.getElementById('searchRow');
             const attackiqRow = document.getElementById('attackiqRow');
 
-            mitreRow.innerHTML = apt.techniques.map(t => 
-                `<div class="chain-box">${t.id}<br>${t.name}</div>`
+            // Generate MITRE techniques row
+            const mitreBoxes = apt.techniques.map(t =>
+                `<span class="arrow">→</span><div class="chain-box mitre">
+                    <div class="technique-id">${t.id}</div>
+                    <div class="technique-name">${t.name}</div>
+                </div>`
             ).join('');
+            mitreRow.innerHTML = mitreRow.innerHTML.split('<!-- Dynamic')[0] + mitreBoxes;
 
-            stepRow.innerHTML = apt.techniques.map(t => 
-                `<div class="chain-box">${t.step}</div>`
+            // Generate attack steps row
+            const stepBoxes = apt.techniques.map(t =>
+                `<span class="arrow">→</span><div class="chain-box steps">
+                    <div class="technique-name">${t.step}</div>
+                </div>`
             ).join('');
+            stepRow.innerHTML = stepRow.innerHTML.split('<!-- Dynamic')[0] + stepBoxes;
 
-            searchRow.innerHTML = apt.techniques.map(t => 
-                `<div class="chain-box">${t.search}</div>`
+            // Generate search terms row
+            const searchBoxes = apt.techniques.map(t =>
+                `<span class="arrow">→</span><div class="chain-box search">
+                    <div class="technique-name">${t.search}</div>
+                </div>`
             ).join('');
+            searchRow.innerHTML = searchRow.innerHTML.split('<!-- Dynamic')[0] + searchBoxes;
 
-            attackiqRow.innerHTML = apt.techniques.map(t => 
-                `<div class="chain-box">${t.attackiq}</div>`
+            // Generate AttackIQ scenarios row
+            const attackiqBoxes = apt.techniques.map(t =>
+                `<span class="arrow">→</span><div class="chain-box attackiq">
+                    <div class="technique-name" style="font-size: 0.72em;">${t.attackiq}</div>
+                </div>`
             ).join('');
+            attackiqRow.innerHTML = attackiqRow.innerHTML.split('<!-- Dynamic')[0] + attackiqBoxes;
 
             // Update breakdown
             const breakdownList = document.getElementById('breakdownList');
