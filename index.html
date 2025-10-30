@@ -90,8 +90,8 @@
 
         /* Filter Controls */
         .filter-controls {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            display: flex;
+            justify-content: center;
             gap: 20px;
             margin-bottom: 30px;
             padding: 20px;
@@ -103,6 +103,8 @@
         .filter-group {
             display: flex;
             flex-direction: column;
+            min-width: 400px;
+            max-width: 500px;
         }
 
         .filter-group label {
@@ -1087,18 +1089,6 @@
                     <option value="">-- Select APT Group --</option>
                 </select>
             </div>
-            <div class="filter-group">
-                <label for="industry">🏢 Target Industry</label>
-                <select id="industry">
-                    <option value="">-- All Industries --</option>
-                </select>
-            </div>
-            <div class="filter-group">
-                <label for="attackType">⚔️ Attack Type</label>
-                <select id="attackType">
-                    <option value="">-- All Attack Types --</option>
-                </select>
-            </div>
         </div>
 
         <div class="loading" id="loading">
@@ -1164,12 +1154,12 @@
                     <!-- Dynamic MITRE techniques will be inserted here (max 14 columns) -->
                 </div>
 
-                <!-- Row 3: Attack Steps -->
+                <!-- Row 3: Attack Techniques -->
                 <div class="chain-row" id="stepRow">
                     <div class="chain-box initial">
-                        <div class="technique-name">Attack<br>Steps</div>
+                        <div class="technique-name">Attack<br>Techniques</div>
                     </div>
-                    <!-- Dynamic attack steps will be inserted here (max 14 columns) -->
+                    <!-- Dynamic attack techniques will be inserted here (max 14 columns) -->
                 </div>
 
                 <!-- Row 4: Search Terms -->
@@ -1676,86 +1666,170 @@
                     techniques: '12',
                     activeSince: '2018'
                 }
+            },
+            'FIN6': {
+                name: 'FIN6',
+                aliases: 'ITG08, Magecart Group 6, Skeleton Spider',
+                attribution: 'Eastern European cybercrime syndicate',
+                activeSince: '2015',
+                victims: 'Retail, hospitality, e-commerce, financial services',
+                primaryTargets: 'Point-of-sale systems, payment card data, e-commerce platforms',
+                industries: ['Finance', 'Retail', 'Hospitality', 'E-commerce'],
+                attackTypes: ['Financial Crime', 'Data Theft', 'Ransomware'],
+                targetSelection: 'High-volume retail and hospitality organizations with POS systems',
+                keyMalware: 'FrameworkPOS, Trinity, More_eggs, Cobalt Strike',
+                ransomwareTies: 'Deployed Ryuk and LockerGoga ransomware in recent campaigns',
+                mitreTTPs: 'T1566 (Phishing), T1003 (Credential Dumping), T1021 (Remote Services), T1486 (Ransomware)',
+                techniques: [
+                    { id: 'T1589.002', name: 'Gather Victim Identity Information: Email Addresses', tactic: 'Reconnaissance', step: 'Email harvesting for phishing', search: 'fin6 email harvesting', attackiq: 'Gather Victim Identity: Email Addresses (T1589.002)' },
+                    { id: 'T1566.001', name: 'Phishing: Spearphishing Attachment', tactic: 'Initial Access', step: 'Spearphishing with malicious attachments', search: 'fin6 spearphishing more_eggs', attackiq: 'Phishing: Spearphishing Attachment (T1566.001)' },
+                    { id: 'T1059.003', name: 'Command/Scripting Interpreter: Windows Command Shell', tactic: 'Execution', step: 'Command shell execution', search: 'fin6 cmd batch scripts', attackiq: 'Command/Scripting Interpreter: Windows Command Shell (T1059.003)' },
+                    { id: 'T1003.001', name: 'OS Credential Dumping: LSASS Memory', tactic: 'Credential Access', step: 'Credential dumping with Mimikatz', search: 'fin6 mimikatz credential dumping', attackiq: 'OS Credential Dumping: LSASS Memory (T1003.001)' },
+                    { id: 'T1053.005', name: 'Scheduled Task/Job: Scheduled Task', tactic: 'Persistence', step: 'Scheduled task persistence', search: 'fin6 scheduled task persistence', attackiq: 'Scheduled Task/Job (T1053.005)' },
+                    { id: 'T1055', name: 'Process Injection', tactic: 'Privilege Escalation', step: 'Process injection techniques', search: 'fin6 process injection', attackiq: 'Process Injection (T1055)' },
+                    { id: 'T1083', name: 'File and Directory Discovery', tactic: 'Discovery', step: 'File system enumeration', search: 'fin6 file discovery pos', attackiq: 'File and Directory Discovery (T1083)' },
+                    { id: 'T1021.002', name: 'Remote Services: SMB/Windows Admin Shares', tactic: 'Lateral Movement', step: 'SMB lateral movement', search: 'fin6 smb psexec lateral', attackiq: 'Remote Services: SMB/Windows Admin Shares (T1021.002)' },
+                    { id: 'T1005', name: 'Data from Local System', tactic: 'Collection', step: 'POS memory scraping', search: 'fin6 pos memory scraping', attackiq: 'Data from Local System (T1005)' },
+                    { id: 'T1041', name: 'Exfiltration Over C2 Channel', tactic: 'Exfiltration', step: 'Data exfiltration via C2', search: 'fin6 data exfiltration c2', attackiq: 'Exfiltration Over C2 Channel (T1041)' },
+                    { id: 'T1486', name: 'Data Encrypted for Impact', tactic: 'Impact', step: 'Ransomware deployment', search: 'fin6 ryuk lockergoga ransomware', attackiq: 'Data Encrypted for Impact (T1486)' }
+                ],
+                breakdown: [
+                    'Reconnaissance: Email address harvesting, target organization profiling',
+                    'Initial Access: Spearphishing with More_eggs backdoor attachments',
+                    'Execution: Windows command shell, batch scripts, PowerShell',
+                    'Credential Access: Mimikatz credential dumping, password harvesting',
+                    'Persistence: Scheduled tasks, registry modifications',
+                    'Privilege Escalation: Process injection, privilege escalation exploits',
+                    'Discovery: File system enumeration, POS system discovery',
+                    'Lateral Movement: SMB/PsExec lateral movement with stolen credentials',
+                    'Collection: POS memory scraping, payment card data theft',
+                    'Exfiltration: Data exfiltration over C2 channels',
+                    'Impact: Ryuk/LockerGoga ransomware deployment for financial extortion'
+                ],
+                stats: {
+                    victims: '80+',
+                    countries: '20+',
+                    techniques: '11',
+                    activeSince: '2015'
+                }
+            },
+            'FIN8': {
+                name: 'FIN8',
+                aliases: 'Syssphinx',
+                attribution: 'Financially motivated cybercrime group',
+                activeSince: '2016',
+                victims: 'Hospitality, retail, financial services, insurance',
+                primaryTargets: 'Point-of-sale systems, payment processors, financial institutions',
+                industries: ['Finance', 'Hospitality', 'Retail', 'Insurance'],
+                attackTypes: ['Financial Crime', 'Data Theft', 'Ransomware'],
+                targetSelection: 'Organizations with POS systems and payment processing infrastructure',
+                keyMalware: 'PUNCHTRACK, PUNCHBUGGY, BADHATCH, PowerSniff',
+                ransomwareTies: 'Shifted to ransomware operations in 2020+',
+                mitreTTPs: 'T1566 (Phishing), T1059 (Scripting), T1003 (Credential Dumping), T1486 (Ransomware)',
+                techniques: [
+                    { id: 'T1590.005', name: 'Gather Victim Network Information: IP Addresses', tactic: 'Reconnaissance', step: 'Network reconnaissance', search: 'fin8 network reconnaissance', attackiq: 'Gather Victim Network Information: IP Addresses (T1590.005)' },
+                    { id: 'T1566.001', name: 'Phishing: Spearphishing Attachment', tactic: 'Initial Access', step: 'Spearphishing campaigns', search: 'fin8 spearphishing badhatch', attackiq: 'Phishing: Spearphishing Attachment (T1566.001)' },
+                    { id: 'T1059.001', name: 'Command/Scripting Interpreter: PowerShell', tactic: 'Execution', step: 'PowerShell malware execution', search: 'fin8 powershell powersniff', attackiq: 'Command/Scripting Interpreter: PowerShell (T1059.001)' },
+                    { id: 'T1003.001', name: 'OS Credential Dumping: LSASS Memory', tactic: 'Credential Access', step: 'Credential dumping', search: 'fin8 credential dumping', attackiq: 'OS Credential Dumping: LSASS Memory (T1003.001)' },
+                    { id: 'T1547.001', name: 'Boot/Logon Autostart: Registry Run Keys', tactic: 'Persistence', step: 'Registry persistence', search: 'fin8 registry persistence', attackiq: 'Boot/Logon Autostart: Registry Run Keys (T1547.001)' },
+                    { id: 'T1134', name: 'Access Token Manipulation', tactic: 'Privilege Escalation', step: 'Token manipulation', search: 'fin8 token manipulation', attackiq: 'Access Token Manipulation (T1134)' },
+                    { id: 'T1135', name: 'Network Share Discovery', tactic: 'Discovery', step: 'Network share enumeration', search: 'fin8 network share discovery', attackiq: 'Network Share Discovery (T1135)' },
+                    { id: 'T1021.001', name: 'Remote Services: Remote Desktop Protocol', tactic: 'Lateral Movement', step: 'RDP lateral movement', search: 'fin8 rdp lateral movement', attackiq: 'Remote Services: Remote Desktop Protocol (T1021.001)' },
+                    { id: 'T1005', name: 'Data from Local System', tactic: 'Collection', step: 'POS data collection', search: 'fin8 pos data collection punchtrack', attackiq: 'Data from Local System (T1005)' },
+                    { id: 'T1041', name: 'Exfiltration Over C2 Channel', tactic: 'Exfiltration', step: 'C2 exfiltration', search: 'fin8 c2 exfiltration', attackiq: 'Exfiltration Over C2 Channel (T1041)' },
+                    { id: 'T1486', name: 'Data Encrypted for Impact', tactic: 'Impact', step: 'Ransomware deployment', search: 'fin8 ransomware', attackiq: 'Data Encrypted for Impact (T1486)' }
+                ],
+                breakdown: [
+                    'Reconnaissance: Network reconnaissance, IP address gathering',
+                    'Initial Access: Spearphishing with BADHATCH malware',
+                    'Execution: PowerShell-based malware (PowerSniff), compiled executables',
+                    'Credential Access: LSASS memory dumping, credential harvesting',
+                    'Persistence: Registry run keys, scheduled tasks',
+                    'Privilege Escalation: Access token manipulation',
+                    'Discovery: Network share discovery, POS system identification',
+                    'Lateral Movement: RDP connections with stolen credentials',
+                    'Collection: POS memory scraping with PUNCHTRACK/PUNCHBUGGY',
+                    'Exfiltration: Data exfiltration over C2 channels',
+                    'Impact: Ransomware deployment (recent campaigns)'
+                ],
+                stats: {
+                    victims: '60+',
+                    countries: '15+',
+                    techniques: '11',
+                    activeSince: '2016'
+                }
+            },
+            'APT38': {
+                name: 'APT38',
+                aliases: 'Bluenoroff, Stardust Chollima, BeagleBoyz',
+                attribution: 'North Korean state-sponsored (Lazarus Group subgroup)',
+                activeSince: '2014',
+                victims: 'Banks, SWIFT networks, cryptocurrency exchanges, financial institutions',
+                primaryTargets: 'Financial theft via SWIFT network compromise, cryptocurrency theft',
+                industries: ['Finance', 'Banking', 'Cryptocurrency'],
+                attackTypes: ['Financial Crime', 'Espionage', 'Sabotage'],
+                targetSelection: 'Banks with SWIFT access, cryptocurrency exchanges, financial institutions',
+                keyMalware: 'DYEPACK, NESTEGG, CROWDEDFLOUNDER, ELECTRICFISH',
+                ransomwareTies: 'None - focused on direct financial theft',
+                mitreTTPs: 'T1566 (Phishing), T1078 (Valid Accounts), T1020 (Automated Exfiltration), T1565 (Data Manipulation)',
+                techniques: [
+                    { id: 'T1589.002', name: 'Gather Victim Identity Information: Email Addresses', tactic: 'Reconnaissance', step: 'Bank employee targeting', search: 'apt38 bank employee targeting', attackiq: 'Gather Victim Identity: Email Addresses (T1589.002)' },
+                    { id: 'T1566.001', name: 'Phishing: Spearphishing Attachment', tactic: 'Initial Access', step: 'Spearphishing bank employees', search: 'apt38 spearphishing swift', attackiq: 'Phishing: Spearphishing Attachment (T1566.001)' },
+                    { id: 'T1204.002', name: 'User Execution: Malicious File', tactic: 'Execution', step: 'Malware execution', search: 'apt38 malware execution', attackiq: 'User Execution: Malicious File (T1204.002)' },
+                    { id: 'T1078', name: 'Valid Accounts', tactic: 'Credential Access', step: 'SWIFT credential theft', search: 'apt38 swift credentials', attackiq: 'Valid Accounts (T1078)' },
+                    { id: 'T1505.003', name: 'Server Software Component: Web Shell', tactic: 'Persistence', step: 'Web shell backdoors', search: 'apt38 web shell backdoor', attackiq: 'Server Software Component: Web Shell (T1505.003)' },
+                    { id: 'T1068', name: 'Exploitation for Privilege Escalation', tactic: 'Privilege Escalation', step: 'Privilege escalation exploits', search: 'apt38 privilege escalation', attackiq: 'Exploitation for Privilege Escalation (T1068)' },
+                    { id: 'T1082', name: 'System Information Discovery', tactic: 'Discovery', step: 'Banking system profiling', search: 'apt38 banking system discovery', attackiq: 'System Information Discovery (T1082)' },
+                    { id: 'T1570', name: 'Lateral Tool Transfer', tactic: 'Lateral Movement', step: 'Internal tool deployment', search: 'apt38 lateral tool transfer', attackiq: 'Lateral Tool Transfer (T1570)' },
+                    { id: 'T1005', name: 'Data from Local System', tactic: 'Collection', step: 'SWIFT transaction data theft', search: 'apt38 swift data theft', attackiq: 'Data from Local System (T1005)' },
+                    { id: 'T1020', name: 'Automated Exfiltration', tactic: 'Exfiltration', step: 'Automated fund transfer', search: 'apt38 automated exfiltration swift', attackiq: 'Automated Exfiltration (T1020)' },
+                    { id: 'T1565.001', name: 'Data Manipulation: Stored Data Manipulation', tactic: 'Impact', step: 'SWIFT message manipulation', search: 'apt38 swift message manipulation', attackiq: 'Data Manipulation: Stored Data (T1565.001)' }
+                ],
+                breakdown: [
+                    'Reconnaissance: Bank employee identification, SWIFT infrastructure profiling',
+                    'Initial Access: Spearphishing targeting bank employees with SWIFT access',
+                    'Execution: Malware deployment (DYEPACK, NESTEGG)',
+                    'Credential Access: SWIFT credential theft, valid account compromise',
+                    'Persistence: Web shell backdoors on banking servers',
+                    'Privilege Escalation: Exploitation of banking system vulnerabilities',
+                    'Discovery: Banking system profiling, SWIFT network mapping',
+                    'Lateral Movement: Internal tool deployment across banking infrastructure',
+                    'Collection: SWIFT transaction data theft, banking credentials',
+                    'Exfiltration: Automated fund transfers via compromised SWIFT access',
+                    'Impact: SWIFT message manipulation to facilitate fraudulent transfers'
+                ],
+                stats: {
+                    victims: '40+',
+                    countries: '20+',
+                    techniques: '11',
+                    activeSince: '2014'
+                }
             }
         };
 
-        // Extract unique industries and attack types for dropdowns
-        const industries = [...new Set(Object.values(aptDatabase).flatMap(apt => apt.industries))].sort();
-        const attackTypes = [...new Set(Object.values(aptDatabase).flatMap(apt => apt.attackTypes))].sort();
-
-        // Populate dropdowns
+        // Populate APT dropdown with finance-focused threat actors
         function populateDropdowns() {
             const aptSelect = document.getElementById('aptGroup');
-            const industrySelect = document.getElementById('industry');
-            const attackTypeSelect = document.getElementById('attackType');
 
-            // Populate APT groups
+            // Populate APT groups - all groups in database target finance sector
             Object.keys(aptDatabase).sort().forEach(apt => {
                 const option = document.createElement('option');
                 option.value = apt;
                 option.textContent = `${apt} (${aptDatabase[apt].aliases.split(',')[0]})`;
                 aptSelect.appendChild(option);
             });
-
-            // Populate industries
-            industries.forEach(industry => {
-                const option = document.createElement('option');
-                option.value = industry;
-                option.textContent = industry;
-                industrySelect.appendChild(option);
-            });
-
-            // Populate attack types
-            attackTypes.forEach(type => {
-                const option = document.createElement('option');
-                option.value = type;
-                option.textContent = type;
-                attackTypeSelect.appendChild(option);
-            });
         }
 
-        // Filter APT groups based on selected criteria
-        function filterAPTs() {
-            const selectedAPT = document.getElementById('aptGroup').value;
-            const selectedIndustry = document.getElementById('industry').value;
-            const selectedAttackType = document.getElementById('attackType').value;
-
-            let filteredAPTs = Object.keys(aptDatabase);
-
-            // If specific APT is selected, use only that
-            if (selectedAPT) {
-                filteredAPTs = [selectedAPT];
-            } else {
-                // Filter by industry
-                if (selectedIndustry) {
-                    filteredAPTs = filteredAPTs.filter(apt => 
-                        aptDatabase[apt].industries.includes(selectedIndustry)
-                    );
-                }
-
-                // Filter by attack type
-                if (selectedAttackType) {
-                    filteredAPTs = filteredAPTs.filter(apt => 
-                        aptDatabase[apt].attackTypes.includes(selectedAttackType)
-                    );
-                }
-            }
-
-            return filteredAPTs;
-        }
-
-        // Update display based on filters
+        // Update display based on APT selection
         function updateDisplay() {
-            const filteredAPTs = filterAPTs();
-            
-            if (filteredAPTs.length === 0) {
+            const selectedAPT = document.getElementById('aptGroup').value;
+
+            if (!selectedAPT) {
                 showNoResults();
                 return;
             }
 
-            // For now, display the first filtered APT (or selected APT)
-            const aptToDisplay = filteredAPTs[0];
-            displayAPT(aptToDisplay);
+            displayAPT(selectedAPT);
         }
 
         // Display APT information
@@ -1841,37 +1915,19 @@
                 }
             }
 
-            // Generate exactly 14 columns for each row - distribute ALL techniques across tactics
+            // Generate exactly 14 columns for each row - one per tactic
             let mitreBoxes = '';
             let stepBoxes = '';
             let searchBoxes = '';
             let attackiqBoxes = '';
 
-            // Create a flattened list of all techniques to distribute across 14 columns
-            const allTechniques = apt.techniques;
-            const techniqueIndex = {};
-            let currentIndex = 0;
+            // Iterate through all 14 tactics and display techniques for each
+            tactics.forEach(tactic => {
+                const techniquesForTactic = techniquesByTactic[tactic];
 
-            tactics.forEach((tactic, tacticIndex) => {
-                // Find the next technique that belongs to this tactic OR any available technique
-                let technique = null;
-
-                // First, try to find a technique specifically for this tactic
-                for (let i = currentIndex; i < allTechniques.length; i++) {
-                    if (allTechniques[i].tactic === tactic) {
-                        technique = allTechniques[i];
-                        currentIndex = i + 1;
-                        break;
-                    }
-                }
-
-                // If no technique found for this tactic, use the next available technique
-                if (!technique && currentIndex < allTechniques.length) {
-                    technique = allTechniques[currentIndex];
-                    currentIndex++;
-                }
-
-                if (technique) {
+                if (techniquesForTactic.length > 0) {
+                    // Use the first technique for this tactic
+                    const technique = techniquesForTactic[0];
                     const attackiqText = technique.attackiq === 'N/A' ? 'N/A' : technique.attackiq;
                     const techniqueUrl = createTechniqueUrl(technique.id);
 
@@ -1892,7 +1948,7 @@
                         <div class="technique-name" style="font-size: 0.72em;">${attackiqText}</div>
                     </div>`;
                 } else {
-                    // Only show empty if we've run out of techniques completely
+                    // This tactic has no techniques - show N/A only in AttackIQ row
                     mitreBoxes += `<span class="arrow">→</span><div class="chain-box mitre" style="opacity: 0.3;">
                         <div class="technique-name" style="font-style: italic;">-</div>
                     </div>`;
@@ -1906,16 +1962,36 @@
                     </div>`;
 
                     attackiqBoxes += `<span class="arrow">→</span><div class="chain-box attackiq" style="opacity: 0.3;">
-                        <div class="technique-name" style="font-style: italic;">-</div>
+                        <div class="technique-name" style="font-style: italic;">N/A</div>
                     </div>`;
                 }
             });
 
             // Update all 4 dynamic rows with exactly 14 columns each
-            mitreRow.innerHTML = mitreRow.innerHTML.split('<!-- Dynamic')[0] + mitreBoxes;
-            stepRow.innerHTML = stepRow.innerHTML.split('<!-- Dynamic')[0] + stepBoxes;
-            searchRow.innerHTML = searchRow.innerHTML.split('<!-- Dynamic')[0] + searchBoxes;
-            attackiqRow.innerHTML = attackiqRow.innerHTML.split('<!-- Dynamic')[0] + attackiqBoxes;
+            // Clear existing content and rebuild from scratch to prevent duplication
+            mitreRow.innerHTML = `
+                <div class="chain-box initial">
+                    <div class="technique-name">MITRE<br>Techniques</div>
+                </div>
+            ` + mitreBoxes;
+
+            stepRow.innerHTML = `
+                <div class="chain-box initial">
+                    <div class="technique-name">Attack<br>Techniques</div>
+                </div>
+            ` + stepBoxes;
+
+            searchRow.innerHTML = `
+                <div class="chain-box initial">
+                    <div class="technique-name" style="font-size: 0.75em;">SIEM/EDR<br>Search Terms</div>
+                </div>
+            ` + searchBoxes;
+
+            attackiqRow.innerHTML = `
+                <div class="chain-box initial">
+                    <div class="technique-name" style="font-size: 0.7em;">AttackIQ<br>Scenarios</div>
+                </div>
+            ` + attackiqBoxes;
 
             // Update breakdown
             const breakdownList = document.getElementById('breakdownList');
@@ -2004,10 +2080,8 @@
             document.getElementById('keyStatsSection').style.display = 'none';
         }
 
-        // Event listeners
+        // Event listener for APT dropdown only
         document.getElementById('aptGroup').addEventListener('change', updateDisplay);
-        document.getElementById('industry').addEventListener('change', updateDisplay);
-        document.getElementById('attackType').addEventListener('change', updateDisplay);
 
         // Initialize
         populateDropdowns();
