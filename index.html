@@ -320,6 +320,34 @@
             line-height: 1.3;
         }
 
+        .chain-box.tactic-header {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+            border: 3px solid #475569;
+        }
+
+        .tactic-link {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.8em;
+        }
+
+        .tactic-link:hover {
+            color: #fbbf24;
+            text-decoration: underline;
+        }
+
+        .technique-link {
+            color: inherit;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .technique-link:hover {
+            text-decoration: underline;
+        }
+
         .no-techniques {
             min-height: 120px;
             display: flex;
@@ -1107,12 +1135,25 @@
         <!-- Attack Chain Visualization -->
         <div class="attack-chain">
             <div class="chain-wrapper">
-                <!-- Row 1: Attack Techniques (renamed from Attack Steps) -->
-                <div class="chain-row" id="stepRow">
+                <!-- Row 1: STATIC MITRE ATT&CK Tactic Headers (NEVER CHANGES) -->
+                <div class="chain-row" id="tacticRow">
                     <div class="chain-box initial">
-                        <div class="technique-name">Attack<br>Techniques</div>
+                        <div class="technique-name">MITRE ATT&CK<br>Tactics</div>
                     </div>
-                    <!-- Dynamic attack techniques will be inserted here (max 14 columns) -->
+                    <span class="arrow">→</span><div class="chain-box tactic-header"><a href="https://attack.mitre.org/tactics/TA0043/" target="_blank" class="tactic-link">Reconnaissance</a></div>
+                    <span class="arrow">→</span><div class="chain-box tactic-header"><a href="https://attack.mitre.org/tactics/TA0042/" target="_blank" class="tactic-link">Resource Development</a></div>
+                    <span class="arrow">→</span><div class="chain-box tactic-header"><a href="https://attack.mitre.org/tactics/TA0001/" target="_blank" class="tactic-link">Initial Access</a></div>
+                    <span class="arrow">→</span><div class="chain-box tactic-header"><a href="https://attack.mitre.org/tactics/TA0002/" target="_blank" class="tactic-link">Execution</a></div>
+                    <span class="arrow">→</span><div class="chain-box tactic-header"><a href="https://attack.mitre.org/tactics/TA0003/" target="_blank" class="tactic-link">Persistence</a></div>
+                    <span class="arrow">→</span><div class="chain-box tactic-header"><a href="https://attack.mitre.org/tactics/TA0004/" target="_blank" class="tactic-link">Privilege Escalation</a></div>
+                    <span class="arrow">→</span><div class="chain-box tactic-header"><a href="https://attack.mitre.org/tactics/TA0005/" target="_blank" class="tactic-link">Defense Evasion</a></div>
+                    <span class="arrow">→</span><div class="chain-box tactic-header"><a href="https://attack.mitre.org/tactics/TA0006/" target="_blank" class="tactic-link">Credential Access</a></div>
+                    <span class="arrow">→</span><div class="chain-box tactic-header"><a href="https://attack.mitre.org/tactics/TA0007/" target="_blank" class="tactic-link">Discovery</a></div>
+                    <span class="arrow">→</span><div class="chain-box tactic-header"><a href="https://attack.mitre.org/tactics/TA0008/" target="_blank" class="tactic-link">Lateral Movement</a></div>
+                    <span class="arrow">→</span><div class="chain-box tactic-header"><a href="https://attack.mitre.org/tactics/TA0009/" target="_blank" class="tactic-link">Collection</a></div>
+                    <span class="arrow">→</span><div class="chain-box tactic-header"><a href="https://attack.mitre.org/tactics/TA0011/" target="_blank" class="tactic-link">Command and Control</a></div>
+                    <span class="arrow">→</span><div class="chain-box tactic-header"><a href="https://attack.mitre.org/tactics/TA0010/" target="_blank" class="tactic-link">Exfiltration</a></div>
+                    <span class="arrow">→</span><div class="chain-box tactic-header"><a href="https://attack.mitre.org/tactics/TA0040/" target="_blank" class="tactic-link">Impact</a></div>
                 </div>
 
                 <!-- Row 2: MITRE ATT&CK Techniques -->
@@ -1123,7 +1164,15 @@
                     <!-- Dynamic MITRE techniques will be inserted here (max 14 columns) -->
                 </div>
 
-                <!-- Row 3: Search Terms -->
+                <!-- Row 3: Attack Steps -->
+                <div class="chain-row" id="stepRow">
+                    <div class="chain-box initial">
+                        <div class="technique-name">Attack<br>Steps</div>
+                    </div>
+                    <!-- Dynamic attack steps will be inserted here (max 14 columns) -->
+                </div>
+
+                <!-- Row 4: Search Terms -->
                 <div class="chain-row" id="searchRow">
                     <div class="chain-box initial">
                         <div class="technique-name" style="font-size: 0.75em;">SIEM/EDR<br>Search Terms</div>
@@ -1131,7 +1180,7 @@
                     <!-- Dynamic search terms will be inserted here (max 14 columns) -->
                 </div>
 
-                <!-- Row 4: AttackIQ Scenario Names -->
+                <!-- Row 5: AttackIQ Scenario Names -->
                 <div class="chain-row" id="attackiqRow">
                     <div class="chain-box initial">
                         <div class="technique-name" style="font-size: 0.7em;">AttackIQ<br>Scenarios</div>
@@ -1755,8 +1804,8 @@
                 </div>
             `;
 
-            // Update attack chain - 4 ROWS with exactly 14 COLUMNS each
-            // Define the 14 MITRE ATT&CK tactics in order
+            // Update attack chain - 4 DYNAMIC ROWS with exactly 14 COLUMNS each
+            // Define the 14 MITRE ATT&CK tactics in order (matching static header row)
             const tactics = [
                 'Reconnaissance', 'Resource Development', 'Initial Access', 'Execution',
                 'Persistence', 'Privilege Escalation', 'Defense Evasion', 'Credential Access',
@@ -1765,8 +1814,8 @@
             ];
 
             // Get row containers
-            const stepRow = document.getElementById('stepRow');
             const mitreRow = document.getElementById('mitreRow');
+            const stepRow = document.getElementById('stepRow');
             const searchRow = document.getElementById('searchRow');
             const attackiqRow = document.getElementById('attackiqRow');
 
@@ -1781,59 +1830,90 @@
                 }
             });
 
-            // Generate exactly 14 columns for each row
-            let stepBoxes = '';
+            // Helper function to create MITRE technique URL
+            function createTechniqueUrl(techniqueId) {
+                // Convert T1566.001 to https://attack.mitre.org/techniques/T1566/001/
+                const parts = techniqueId.split('.');
+                if (parts.length === 2) {
+                    return `https://attack.mitre.org/techniques/${parts[0]}/${parts[1]}/`;
+                } else {
+                    return `https://attack.mitre.org/techniques/${techniqueId}/`;
+                }
+            }
+
+            // Generate exactly 14 columns for each row - distribute ALL techniques across tactics
             let mitreBoxes = '';
+            let stepBoxes = '';
             let searchBoxes = '';
             let attackiqBoxes = '';
 
-            tactics.forEach(tactic => {
-                const techniques = techniquesByTactic[tactic];
+            // Create a flattened list of all techniques to distribute across 14 columns
+            const allTechniques = apt.techniques;
+            const techniqueIndex = {};
+            let currentIndex = 0;
 
-                if (techniques.length > 0) {
-                    // Use first technique for this tactic
-                    const t = techniques[0];
-                    const attackiqText = t.attackiq === 'N/A' ? 'N/A' : t.attackiq;
+            tactics.forEach((tactic, tacticIndex) => {
+                // Find the next technique that belongs to this tactic OR any available technique
+                let technique = null;
 
-                    stepBoxes += `<span class="arrow">→</span><div class="chain-box steps">
-                        <div class="technique-name">${t.step}</div>
-                    </div>`;
+                // First, try to find a technique specifically for this tactic
+                for (let i = currentIndex; i < allTechniques.length; i++) {
+                    if (allTechniques[i].tactic === tactic) {
+                        technique = allTechniques[i];
+                        currentIndex = i + 1;
+                        break;
+                    }
+                }
+
+                // If no technique found for this tactic, use the next available technique
+                if (!technique && currentIndex < allTechniques.length) {
+                    technique = allTechniques[currentIndex];
+                    currentIndex++;
+                }
+
+                if (technique) {
+                    const attackiqText = technique.attackiq === 'N/A' ? 'N/A' : technique.attackiq;
+                    const techniqueUrl = createTechniqueUrl(technique.id);
 
                     mitreBoxes += `<span class="arrow">→</span><div class="chain-box mitre">
-                        <div class="technique-id">${t.id}</div>
-                        <div class="technique-name">${t.name}</div>
+                        <div class="technique-id"><a href="${techniqueUrl}" target="_blank" class="technique-link">${technique.id}</a></div>
+                        <div class="technique-name"><a href="${techniqueUrl}" target="_blank" class="technique-link">${technique.name}</a></div>
+                    </div>`;
+
+                    stepBoxes += `<span class="arrow">→</span><div class="chain-box steps">
+                        <div class="technique-name">${technique.step}</div>
                     </div>`;
 
                     searchBoxes += `<span class="arrow">→</span><div class="chain-box search">
-                        <div class="technique-name">${t.search}</div>
+                        <div class="technique-name">${technique.search}</div>
                     </div>`;
 
                     attackiqBoxes += `<span class="arrow">→</span><div class="chain-box attackiq">
                         <div class="technique-name" style="font-size: 0.72em;">${attackiqText}</div>
                     </div>`;
                 } else {
-                    // Empty column placeholders
-                    stepBoxes += `<span class="arrow">→</span><div class="chain-box steps">
-                        <div class="technique-name">N/A</div>
+                    // Only show empty if we've run out of techniques completely
+                    mitreBoxes += `<span class="arrow">→</span><div class="chain-box mitre" style="opacity: 0.3;">
+                        <div class="technique-name" style="font-style: italic;">-</div>
                     </div>`;
 
-                    mitreBoxes += `<span class="arrow">→</span><div class="chain-box mitre">
-                        <div class="technique-name">N/A</div>
+                    stepBoxes += `<span class="arrow">→</span><div class="chain-box steps" style="opacity: 0.3;">
+                        <div class="technique-name" style="font-style: italic;">-</div>
                     </div>`;
 
-                    searchBoxes += `<span class="arrow">→</span><div class="chain-box search">
-                        <div class="technique-name">N/A</div>
+                    searchBoxes += `<span class="arrow">→</span><div class="chain-box search" style="opacity: 0.3;">
+                        <div class="technique-name" style="font-style: italic;">-</div>
                     </div>`;
 
-                    attackiqBoxes += `<span class="arrow">→</span><div class="chain-box attackiq">
-                        <div class="technique-name">N/A</div>
+                    attackiqBoxes += `<span class="arrow">→</span><div class="chain-box attackiq" style="opacity: 0.3;">
+                        <div class="technique-name" style="font-style: italic;">-</div>
                     </div>`;
                 }
             });
 
-            // Update all 4 rows with exactly 14 columns each
-            stepRow.innerHTML = stepRow.innerHTML.split('<!-- Dynamic')[0] + stepBoxes;
+            // Update all 4 dynamic rows with exactly 14 columns each
             mitreRow.innerHTML = mitreRow.innerHTML.split('<!-- Dynamic')[0] + mitreBoxes;
+            stepRow.innerHTML = stepRow.innerHTML.split('<!-- Dynamic')[0] + stepBoxes;
             searchRow.innerHTML = searchRow.innerHTML.split('<!-- Dynamic')[0] + searchBoxes;
             attackiqRow.innerHTML = attackiqRow.innerHTML.split('<!-- Dynamic')[0] + attackiqBoxes;
 
