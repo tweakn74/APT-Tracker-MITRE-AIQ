@@ -1,0 +1,55 @@
+name: Deploy static site to GitHub Pages
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build, Test & Validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps || npx playwright install
+
+      - name: Run Playwright tests (smoke + schema)
+        run: npm test
+
+      - name: Prepare dist directory
+        run: |
+          set -e
+          mkdir -p dist
+          if command -v rsync >/dev/null 2>&1; then
+            rsync -av --delete --exclude=node_modules --exclude=.git --exclude=tests --exclude=.github ./ dist/
+          else
+            tar -C . -cf - --exclude='./node_modules' --exclude='./.git' --exclude='./tests' --exclude='./.github' . | tar -C dist -xf -
+          fi
+
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: dist }
+
+  deploy:
+    name: Deploy
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
