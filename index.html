@@ -364,6 +364,24 @@
             text-align: center;
         }
 
+        .no-techniques {
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #cbd5e1;
+            border-radius: 8px;
+            background: #f8fafc;
+            margin: 10px 0;
+        }
+
+        .no-techniques-text {
+            color: #64748b;
+            font-style: italic;
+            font-size: 0.85em;
+            text-align: center;
+        }
+
         .chain-box.initial {
             background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%);
             color: white;
@@ -1882,27 +1900,38 @@
                 techniquesByTactic[tactic].push(technique);
             });
 
-            // Populate each tactic column with its techniques
-            Object.keys(techniquesByTactic).forEach(tactic => {
+            // Populate ALL 14 tactic columns (including empty ones)
+            tactics.forEach(tactic => {
                 const tacticId = tactic.toLowerCase().replace(/\s+/g, '-');
                 const container = document.getElementById(`${tacticId}-techniques`);
 
                 if (container) {
-                    const techniques = techniquesByTactic[tactic];
-                    const techniqueBoxes = techniques.map(t => {
-                        const attackiqText = t.attackiq === 'N/A' ? 'N/A' : t.attackiq;
-                        return `
-                            <div class="technique-box">
-                                <div class="technique-id">${t.id}</div>
-                                <div class="technique-name">${t.name}</div>
-                                <div class="technique-step">${t.step}</div>
-                                <div class="technique-search">${t.search}</div>
-                                <div class="technique-attackiq">${attackiqText}</div>
+                    const techniques = techniquesByTactic[tactic] || [];
+
+                    if (techniques.length > 0) {
+                        // Populate with actual techniques
+                        const techniqueBoxes = techniques.map(t => {
+                            const attackiqText = t.attackiq === 'N/A' ? 'N/A' : t.attackiq;
+                            return `
+                                <div class="technique-box">
+                                    <div class="technique-id">${t.id}</div>
+                                    <div class="technique-name">${t.name}</div>
+                                    <div class="technique-step">${t.step}</div>
+                                    <div class="technique-search">${t.search}</div>
+                                    <div class="technique-attackiq">${attackiqText}</div>
+                                </div>
+                            `;
+                        }).join('');
+
+                        container.innerHTML = techniqueBoxes;
+                    } else {
+                        // Show placeholder for empty columns
+                        container.innerHTML = `
+                            <div class="no-techniques">
+                                <div class="no-techniques-text">No techniques observed</div>
                             </div>
                         `;
-                    }).join('');
-
-                    container.innerHTML = techniqueBoxes;
+                    }
                 }
             });
 
