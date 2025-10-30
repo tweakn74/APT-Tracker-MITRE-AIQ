@@ -1371,6 +1371,7 @@
         const aptDatabase = {
             'FIN7': {
                 name: 'FIN7',
+                mitreId: 'G0046',
                 aliases: 'Carbon Spider, Navigator Group, Sangria Tempest, Elbrus',
                 attribution: 'Eastern European cybercrime syndicate, suspected Russian-speaking',
                 activeSince: '2013',
@@ -1443,6 +1444,7 @@
             },
             'APT29': {
                 name: 'APT29',
+                mitreId: 'G0016',
                 aliases: 'Cozy Bear, The Dukes, YTTRIUM, Nobelium, UNC2452, Midnight Blizzard',
                 attribution: 'Russian Foreign Intelligence Service (SVR)',
                 activeSince: '2008',
@@ -1491,6 +1493,7 @@
             },
             'Lazarus': {
                 name: 'Lazarus Group',
+                mitreId: 'G0032',
                 aliases: 'HIDDEN COBRA, Zinc, APT38, BlueNoroff, Labyrinth Chollima',
                 attribution: 'North Korean state-sponsored (Reconnaissance General Bureau)',
                 activeSince: '2009',
@@ -1539,6 +1542,7 @@
             },
             'APT28': {
                 name: 'APT28',
+                mitreId: 'G0007',
                 aliases: 'Fancy Bear, Sofacy, Sednit, Pawn Storm, Strontium, Forest Blizzard',
                 attribution: 'Russian military intelligence (GRU Unit 26165)',
                 activeSince: '2007',
@@ -1587,6 +1591,7 @@
             },
             'APT41': {
                 name: 'APT41',
+                mitreId: 'G0096',
                 aliases: 'Winnti, Barium, Wicked Panda, Double Dragon',
                 attribution: 'Chinese state-sponsored with dual mission (espionage + financial)',
                 activeSince: '2012',
@@ -1635,6 +1640,7 @@
             },
             'Carbanak': {
                 name: 'Carbanak',
+                mitreId: 'G0008',
                 aliases: 'Anunak, GOLD NIAGARA',
                 attribution: 'Eastern European cybercrime syndicate, financially motivated',
                 activeSince: '2013',
@@ -1683,6 +1689,7 @@
             },
             'Wizard Spider': {
                 name: 'Wizard Spider',
+                mitreId: 'G0102',
                 aliases: 'UNC1878, Grim Spider, Lunar Spider',
                 attribution: 'Russian-speaking cybercrime group',
                 activeSince: '2018',
@@ -1731,6 +1738,7 @@
             },
             'FIN6': {
                 name: 'FIN6',
+                mitreId: 'G0037',
                 aliases: 'ITG08, Magecart Group 6, Skeleton Spider',
                 attribution: 'Eastern European cybercrime syndicate',
                 activeSince: '2015',
@@ -1777,6 +1785,7 @@
             },
             'FIN8': {
                 name: 'FIN8',
+                mitreId: 'G0061',
                 aliases: 'Syssphinx',
                 attribution: 'Financially motivated cybercrime group',
                 activeSince: '2016',
@@ -1823,6 +1832,7 @@
             },
             'APT38': {
                 name: 'APT38',
+                mitreId: 'G0082',
                 aliases: 'Bluenoroff, Stardust Chollima, BeagleBoyz',
                 attribution: 'North Korean state-sponsored (Lazarus Group subgroup)',
                 activeSince: '2014',
@@ -1866,6 +1876,344 @@
                     techniques: '11',
                     activeSince: '2014'
                 }
+            },
+            'admin@338': {
+                name: 'admin@338',
+                mitreId: 'G0018',
+                aliases: 'None',
+                attribution: 'China-based cyber threat group',
+                activeSince: '2008',
+                victims: 'Organizations involved in financial, economic, and trade policy',
+                primaryTargets: 'Financial, economic, and trade policy organizations',
+                industries: ['Finance', 'Government', 'Trade'],
+                attackTypes: ['Espionage', 'Data Theft'],
+                targetSelection: 'Organizations involved in financial and economic policy',
+                keyMalware: 'PoisonIvy, LOWBALL, BUBBLEWRAP',
+                ransomwareTies: 'None - focused on espionage',
+                mitreTTPs: 'T1566 (Phishing), T1059 (Command/Scripting), T1083 (File Discovery), T1082 (System Info Discovery)',
+                techniques: [
+                    { id: 'T1589.002', name: 'Gather Victim Identity Information: Email Addresses', tactic: 'Reconnaissance', step: 'Email harvesting', search: 'admin@338 email reconnaissance', attackiq: 'Gather Victim Identity: Email Addresses (T1589.002)' },
+                    { id: 'T1566.001', name: 'Phishing: Spearphishing Attachment', tactic: 'Initial Access', step: 'Malicious Office documents', search: 'admin@338 spearphishing', attackiq: 'Phishing: Spearphishing Attachment (T1566.001)' },
+                    { id: 'T1204.002', name: 'User Execution: Malicious File', tactic: 'Execution', step: 'User-triggered execution', search: 'admin@338 malicious file', attackiq: 'User Execution: Malicious File (T1204.002)' },
+                    { id: 'T1203', name: 'Exploitation for Client Execution', tactic: 'Execution', step: 'CVE-2012-0158 exploitation', search: 'admin@338 cve-2012-0158', attackiq: 'Exploitation for Client Execution (T1203)' },
+                    { id: 'T1059.003', name: 'Command and Scripting Interpreter: Windows Command Shell', tactic: 'Execution', step: 'Command shell execution', search: 'admin@338 cmd shell', attackiq: 'Command/Scripting Interpreter: Windows Command Shell (T1059.003)' },
+                    { id: 'T1036.005', name: 'Masquerading: Match Legitimate Name or Location', tactic: 'Defense Evasion', step: 'Rename tools to benign names', search: 'admin@338 masquerading', attackiq: 'Masquerading: Match Legitimate Name (T1036.005)' },
+                    { id: 'T1087.001', name: 'Account Discovery: Local Account', tactic: 'Discovery', step: 'Local account enumeration', search: 'admin@338 net user', attackiq: 'Account Discovery: Local Account (T1087.001)' },
+                    { id: 'T1083', name: 'File and Directory Discovery', tactic: 'Discovery', step: 'File system enumeration', search: 'admin@338 file discovery', attackiq: 'File and Directory Discovery (T1083)' },
+                    { id: 'T1082', name: 'System Information Discovery', tactic: 'Discovery', step: 'System info gathering', search: 'admin@338 systeminfo', attackiq: 'System Information Discovery (T1082)' },
+                    { id: 'T1016', name: 'System Network Configuration Discovery', tactic: 'Discovery', step: 'Network configuration discovery', search: 'admin@338 ipconfig', attackiq: 'System Network Configuration Discovery (T1016)' },
+                    { id: 'T1041', name: 'Exfiltration Over C2 Channel', tactic: 'Exfiltration', step: 'Data exfiltration', search: 'admin@338 exfiltration', attackiq: 'Exfiltration Over C2 Channel (T1041)' },
+                    { id: 'T1565.001', name: 'Data Manipulation: Stored Data Manipulation', tactic: 'Impact', step: 'Data manipulation', search: 'admin@338 data manipulation', attackiq: 'Data Manipulation: Stored Data (T1565.001)' }
+                ],
+                breakdown: [
+                    'Reconnaissance: Email address harvesting for targeted spearphishing',
+                    'Initial Access: Spearphishing with malicious Microsoft Office documents',
+                    'Execution: User-triggered malware execution, CVE-2012-0158 exploitation',
+                    'Defense Evasion: Renaming tools to match legitimate file names',
+                    'Discovery: Comprehensive system and network reconnaissance using built-in Windows commands',
+                    'Exfiltration: Data exfiltration over C2 channels',
+                    'Impact: Data manipulation for espionage objectives'
+                ],
+                stats: {
+                    victims: '50+',
+                    countries: '10+',
+                    techniques: '12',
+                    activeSince: '2008'
+                }
+            },
+            'Agrius': {
+                name: 'Agrius',
+                mitreId: 'G1030',
+                aliases: 'Pink Sandstorm, AMERICIUM, Agonizing Serpens, BlackShadow',
+                attribution: 'Iranian threat actor, linked to Iran\'s Ministry of Intelligence and Security (MOIS)',
+                activeSince: '2020',
+                victims: 'Organizations in the Middle East, emphasis on Israeli targets',
+                primaryTargets: 'Critical infrastructure, government, defense sectors in Middle East',
+                industries: ['Government', 'Defense', 'Critical Infrastructure'],
+                attackTypes: ['Ransomware', 'Wiper Attacks', 'Espionage'],
+                targetSelection: 'Israeli and Middle Eastern critical infrastructure',
+                keyMalware: 'Apostle wiper, Fantasy ransomware, IPsec Helper backdoor',
+                ransomwareTies: 'Deploys ransomware and wipers for destructive attacks',
+                mitreTTPs: 'T1566 (Phishing), T1190 (Exploit Public-Facing Application), T1486 (Ransomware), T1485 (Data Destruction)',
+                techniques: [
+                    { id: 'T1589.002', name: 'Gather Victim Identity Information: Email Addresses', tactic: 'Reconnaissance', step: 'Target reconnaissance', search: 'agrius reconnaissance', attackiq: 'Gather Victim Identity: Email Addresses (T1589.002)' },
+                    { id: 'T1190', name: 'Exploit Public-Facing Application', tactic: 'Initial Access', step: 'Web application exploitation', search: 'agrius web exploit', attackiq: 'Exploit Public-Facing Application (T1190)' },
+                    { id: 'T1059.001', name: 'Command and Scripting Interpreter: PowerShell', tactic: 'Execution', step: 'PowerShell execution', search: 'agrius powershell', attackiq: 'Command/Scripting Interpreter: PowerShell (T1059.001)' },
+                    { id: 'T1543.003', name: 'Create or Modify System Process: Windows Service', tactic: 'Persistence', step: 'Service persistence', search: 'agrius service persistence', attackiq: 'Create or Modify System Process: Windows Service (T1543.003)' },
+                    { id: 'T1078', name: 'Valid Accounts', tactic: 'Privilege Escalation', step: 'Stolen credentials', search: 'agrius valid accounts', attackiq: 'Valid Accounts (T1078)' },
+                    { id: 'T1070.004', name: 'Indicator Removal: File Deletion', tactic: 'Defense Evasion', step: 'Log deletion', search: 'agrius log deletion', attackiq: 'Indicator Removal: File Deletion (T1070.004)' },
+                    { id: 'T1003.001', name: 'OS Credential Dumping: LSASS Memory', tactic: 'Credential Access', step: 'Credential dumping', search: 'agrius credential dumping', attackiq: 'OS Credential Dumping: LSASS Memory (T1003.001)' },
+                    { id: 'T1082', name: 'System Information Discovery', tactic: 'Discovery', step: 'System reconnaissance', search: 'agrius system discovery', attackiq: 'System Information Discovery (T1082)' },
+                    { id: 'T1021.001', name: 'Remote Services: Remote Desktop Protocol', tactic: 'Lateral Movement', step: 'RDP lateral movement', search: 'agrius rdp', attackiq: 'Remote Services: Remote Desktop Protocol (T1021.001)' },
+                    { id: 'T1005', name: 'Data from Local System', tactic: 'Collection', step: 'Data collection', search: 'agrius data collection', attackiq: 'Data from Local System (T1005)' },
+                    { id: 'T1041', name: 'Exfiltration Over C2 Channel', tactic: 'Exfiltration', step: 'Data exfiltration', search: 'agrius exfiltration', attackiq: 'Exfiltration Over C2 Channel (T1041)' },
+                    { id: 'T1486', name: 'Data Encrypted for Impact', tactic: 'Impact', step: 'Ransomware/wiper deployment', search: 'agrius ransomware wiper', attackiq: 'Data Encrypted for Impact (T1486)' }
+                ],
+                breakdown: [
+                    'Reconnaissance: Target identification and email harvesting',
+                    'Initial Access: Exploitation of public-facing web applications',
+                    'Execution: PowerShell-based malware execution',
+                    'Persistence: Windows service creation for persistence',
+                    'Privilege Escalation: Use of stolen credentials',
+                    'Defense Evasion: Log and file deletion to cover tracks',
+                    'Credential Access: LSASS memory dumping',
+                    'Discovery: System and network reconnaissance',
+                    'Lateral Movement: RDP-based lateral movement',
+                    'Collection: Local data collection',
+                    'Exfiltration: Data exfiltration over C2',
+                    'Impact: Ransomware and wiper deployment for destructive attacks'
+                ],
+                stats: {
+                    victims: '30+',
+                    countries: '5+',
+                    techniques: '12',
+                    activeSince: '2020'
+                }
+            },
+            'Ajax Security Team': {
+                name: 'Ajax Security Team',
+                mitreId: 'G0130',
+                aliases: 'Operation Woolen-Goldfish, AjaxTM',
+                attribution: 'Iranian threat actor',
+                activeSince: '2010',
+                victims: 'Organizations in Middle East, particularly Iran and Saudi Arabia',
+                primaryTargets: 'Government, defense, and critical infrastructure',
+                industries: ['Government', 'Defense', 'Critical Infrastructure'],
+                attackTypes: ['Espionage', 'Website Defacement', 'Data Theft'],
+                targetSelection: 'Middle Eastern government and defense organizations',
+                keyMalware: 'STEELCORGI, GRIFFON, NETWIRE, PINEFLOWER',
+                ransomwareTies: 'None - focused on espionage and defacement',
+                mitreTTPs: 'T1190 (Exploit Public-Facing Application), T1505.003 (Web Shell), T1059 (Command/Scripting)',
+                techniques: [
+                    { id: 'T1595.002', name: 'Active Scanning: Vulnerability Scanning', tactic: 'Reconnaissance', step: 'Vulnerability scanning', search: 'ajax security team scanning', attackiq: 'Active Scanning: Vulnerability Scanning (T1595.002)' },
+                    { id: 'T1190', name: 'Exploit Public-Facing Application', tactic: 'Initial Access', step: 'Web application exploitation', search: 'ajax security team web exploit', attackiq: 'Exploit Public-Facing Application (T1190)' },
+                    { id: 'T1059.004', name: 'Command and Scripting Interpreter: Unix Shell', tactic: 'Execution', step: 'Shell command execution', search: 'ajax security team shell', attackiq: 'Command/Scripting Interpreter: Unix Shell (T1059.004)' },
+                    { id: 'T1505.003', name: 'Server Software Component: Web Shell', tactic: 'Persistence', step: 'Web shell deployment', search: 'ajax security team webshell', attackiq: 'Server Software Component: Web Shell (T1505.003)' },
+                    { id: 'T1068', name: 'Exploitation for Privilege Escalation', tactic: 'Privilege Escalation', step: 'Privilege escalation exploits', search: 'ajax security team privesc', attackiq: 'Exploitation for Privilege Escalation (T1068)' },
+                    { id: 'T1027', name: 'Obfuscated Files or Information', tactic: 'Defense Evasion', step: 'Code obfuscation', search: 'ajax security team obfuscation', attackiq: 'Obfuscated Files or Information (T1027)' },
+                    { id: 'T1003.008', name: 'OS Credential Dumping: /etc/passwd and /etc/shadow', tactic: 'Credential Access', step: 'Credential file theft', search: 'ajax security team passwd shadow', attackiq: 'OS Credential Dumping: /etc/passwd and /etc/shadow (T1003.008)' },
+                    { id: 'T1083', name: 'File and Directory Discovery', tactic: 'Discovery', step: 'File system enumeration', search: 'ajax security team file discovery', attackiq: 'File and Directory Discovery (T1083)' },
+                    { id: 'T1021.004', name: 'Remote Services: SSH', tactic: 'Lateral Movement', step: 'SSH lateral movement', search: 'ajax security team ssh', attackiq: 'Remote Services: SSH (T1021.004)' },
+                    { id: 'T1005', name: 'Data from Local System', tactic: 'Collection', step: 'Data collection', search: 'ajax security team data collection', attackiq: 'Data from Local System (T1005)' },
+                    { id: 'T1041', name: 'Exfiltration Over C2 Channel', tactic: 'Exfiltration', step: 'Data exfiltration', search: 'ajax security team exfiltration', attackiq: 'Exfiltration Over C2 Channel (T1041)' },
+                    { id: 'T1491.001', name: 'Defacement: Internal Defacement', tactic: 'Impact', step: 'Website defacement', search: 'ajax security team defacement', attackiq: 'Defacement: Internal Defacement (T1491.001)' }
+                ],
+                breakdown: [
+                    'Reconnaissance: Vulnerability scanning of target web applications',
+                    'Initial Access: Exploitation of public-facing web applications',
+                    'Execution: Unix shell command execution',
+                    'Persistence: Web shell deployment for persistent access',
+                    'Privilege Escalation: Exploitation of system vulnerabilities',
+                    'Defense Evasion: Code and file obfuscation',
+                    'Credential Access: Theft of /etc/passwd and /etc/shadow files',
+                    'Discovery: File system enumeration',
+                    'Lateral Movement: SSH-based lateral movement',
+                    'Collection: Local data collection',
+                    'Exfiltration: Data exfiltration over C2',
+                    'Impact: Website defacement for political messaging'
+                ],
+                stats: {
+                    victims: '40+',
+                    countries: '8+',
+                    techniques: '12',
+                    activeSince: '2010'
+                }
+            },
+            'Akira': {
+                name: 'Akira',
+                mitreId: 'G1024',
+                aliases: 'None',
+                attribution: 'Cybercriminal ransomware group',
+                activeSince: '2023',
+                victims: 'Organizations across multiple sectors globally',
+                primaryTargets: 'Healthcare, education, finance, manufacturing',
+                industries: ['Healthcare', 'Education', 'Finance', 'Manufacturing'],
+                attackTypes: ['Ransomware', 'Data Theft', 'Double Extortion'],
+                targetSelection: 'Opportunistic targeting of vulnerable organizations',
+                keyMalware: 'Akira ransomware',
+                ransomwareTies: 'Akira ransomware - double extortion tactics',
+                mitreTTPs: 'T1190 (Exploit Public-Facing Application), T1486 (Ransomware), T1567 (Exfiltration to Cloud)',
+                techniques: [
+                    { id: 'T1595.002', name: 'Active Scanning: Vulnerability Scanning', tactic: 'Reconnaissance', step: 'Network scanning', search: 'akira ransomware scanning', attackiq: 'Active Scanning: Vulnerability Scanning (T1595.002)' },
+                    { id: 'T1190', name: 'Exploit Public-Facing Application', tactic: 'Initial Access', step: 'VPN/Firewall exploitation', search: 'akira ransomware vpn exploit', attackiq: 'Exploit Public-Facing Application (T1190)' },
+                    { id: 'T1059.001', name: 'Command and Scripting Interpreter: PowerShell', tactic: 'Execution', step: 'PowerShell execution', search: 'akira ransomware powershell', attackiq: 'Command/Scripting Interpreter: PowerShell (T1059.001)' },
+                    { id: 'T1053.005', name: 'Scheduled Task/Job: Scheduled Task', tactic: 'Persistence', step: 'Scheduled task persistence', search: 'akira ransomware scheduled task', attackiq: 'Scheduled Task/Job: Scheduled Task (T1053.005)' },
+                    { id: 'T1078', name: 'Valid Accounts', tactic: 'Privilege Escalation', step: 'Stolen credentials', search: 'akira ransomware valid accounts', attackiq: 'Valid Accounts (T1078)' },
+                    { id: 'T1562.001', name: 'Impair Defenses: Disable or Modify Tools', tactic: 'Defense Evasion', step: 'Disable security tools', search: 'akira ransomware disable av', attackiq: 'Impair Defenses: Disable or Modify Tools (T1562.001)' },
+                    { id: 'T1003.001', name: 'OS Credential Dumping: LSASS Memory', tactic: 'Credential Access', step: 'Credential dumping', search: 'akira ransomware credential dumping', attackiq: 'OS Credential Dumping: LSASS Memory (T1003.001)' },
+                    { id: 'T1018', name: 'Remote System Discovery', tactic: 'Discovery', step: 'Network discovery', search: 'akira ransomware network discovery', attackiq: 'Remote System Discovery (T1018)' },
+                    { id: 'T1021.001', name: 'Remote Services: Remote Desktop Protocol', tactic: 'Lateral Movement', step: 'RDP lateral movement', search: 'akira ransomware rdp', attackiq: 'Remote Services: Remote Desktop Protocol (T1021.001)' },
+                    { id: 'T1560.001', name: 'Archive Collected Data: Archive via Utility', tactic: 'Collection', step: 'Data archiving', search: 'akira ransomware data archive', attackiq: 'Archive Collected Data: Archive via Utility (T1560.001)' },
+                    { id: 'T1567.002', name: 'Exfiltration Over Web Service: Exfiltration to Cloud Storage', tactic: 'Exfiltration', step: 'Cloud exfiltration', search: 'akira ransomware cloud exfil', attackiq: 'Exfiltration Over Web Service: Cloud Storage (T1567.002)' },
+                    { id: 'T1486', name: 'Data Encrypted for Impact', tactic: 'Impact', step: 'Ransomware encryption', search: 'akira ransomware encryption', attackiq: 'Data Encrypted for Impact (T1486)' }
+                ],
+                breakdown: [
+                    'Reconnaissance: Network and vulnerability scanning',
+                    'Initial Access: Exploitation of VPN and firewall vulnerabilities',
+                    'Execution: PowerShell-based malware execution',
+                    'Persistence: Scheduled task creation',
+                    'Privilege Escalation: Use of stolen credentials',
+                    'Defense Evasion: Disabling antivirus and security tools',
+                    'Credential Access: LSASS memory dumping',
+                    'Discovery: Network and system discovery',
+                    'Lateral Movement: RDP-based lateral movement',
+                    'Collection: Data archiving for exfiltration',
+                    'Exfiltration: Cloud storage exfiltration',
+                    'Impact: Ransomware deployment with double extortion'
+                ],
+                stats: {
+                    victims: '100+',
+                    countries: '15+',
+                    techniques: '12',
+                    activeSince: '2023'
+                }
+            },
+            'ALLANITE': {
+                name: 'ALLANITE',
+                mitreId: 'G1000',
+                aliases: 'Palmetto Fusion',
+                attribution: 'Unknown, suspected state-sponsored',
+                activeSince: '2021',
+                victims: 'Electric utilities and energy sector organizations',
+                primaryTargets: 'Electric utilities, energy sector, critical infrastructure',
+                industries: ['Energy', 'Utilities', 'Critical Infrastructure'],
+                attackTypes: ['Espionage', 'Reconnaissance', 'Potential Sabotage'],
+                targetSelection: 'Electric utilities and energy infrastructure',
+                keyMalware: 'Custom web shells, TINYSHELL',
+                ransomwareTies: 'None - focused on espionage and reconnaissance',
+                mitreTTPs: 'T1190 (Exploit Public-Facing Application), T1505.003 (Web Shell), T1083 (File Discovery)',
+                techniques: [
+                    { id: 'T1595.002', name: 'Active Scanning: Vulnerability Scanning', tactic: 'Reconnaissance', step: 'Infrastructure scanning', search: 'allanite scanning', attackiq: 'Active Scanning: Vulnerability Scanning (T1595.002)' },
+                    { id: 'T1190', name: 'Exploit Public-Facing Application', tactic: 'Initial Access', step: 'Web application exploitation', search: 'allanite web exploit', attackiq: 'Exploit Public-Facing Application (T1190)' },
+                    { id: 'T1059.004', name: 'Command and Scripting Interpreter: Unix Shell', tactic: 'Execution', step: 'Shell command execution', search: 'allanite shell', attackiq: 'Command/Scripting Interpreter: Unix Shell (T1059.004)' },
+                    { id: 'T1505.003', name: 'Server Software Component: Web Shell', tactic: 'Persistence', step: 'Web shell deployment', search: 'allanite webshell', attackiq: 'Server Software Component: Web Shell (T1505.003)' },
+                    { id: 'T1068', name: 'Exploitation for Privilege Escalation', tactic: 'Privilege Escalation', step: 'Privilege escalation', search: 'allanite privesc', attackiq: 'Exploitation for Privilege Escalation (T1068)' },
+                    { id: 'T1070.004', name: 'Indicator Removal: File Deletion', tactic: 'Defense Evasion', step: 'Log deletion', search: 'allanite log deletion', attackiq: 'Indicator Removal: File Deletion (T1070.004)' },
+                    { id: 'T1003.008', name: 'OS Credential Dumping: /etc/passwd and /etc/shadow', tactic: 'Credential Access', step: 'Credential file theft', search: 'allanite credential theft', attackiq: 'OS Credential Dumping: /etc/passwd and /etc/shadow (T1003.008)' },
+                    { id: 'T1083', name: 'File and Directory Discovery', tactic: 'Discovery', step: 'File system enumeration', search: 'allanite file discovery', attackiq: 'File and Directory Discovery (T1083)' },
+                    { id: 'T1021.004', name: 'Remote Services: SSH', tactic: 'Lateral Movement', step: 'SSH lateral movement', search: 'allanite ssh', attackiq: 'Remote Services: SSH (T1021.004)' },
+                    { id: 'T1005', name: 'Data from Local System', tactic: 'Collection', step: 'Data collection', search: 'allanite data collection', attackiq: 'Data from Local System (T1005)' },
+                    { id: 'T1041', name: 'Exfiltration Over C2 Channel', tactic: 'Exfiltration', step: 'Data exfiltration', search: 'allanite exfiltration', attackiq: 'Exfiltration Over C2 Channel (T1041)' },
+                    { id: 'T1489', name: 'Service Stop', tactic: 'Impact', step: 'Service disruption', search: 'allanite service stop', attackiq: 'Service Stop (T1489)' }
+                ],
+                breakdown: [
+                    'Reconnaissance: Infrastructure and vulnerability scanning',
+                    'Initial Access: Exploitation of public-facing web applications',
+                    'Execution: Unix shell command execution',
+                    'Persistence: Web shell deployment',
+                    'Privilege Escalation: Exploitation of system vulnerabilities',
+                    'Defense Evasion: Log and file deletion',
+                    'Credential Access: Theft of credential files',
+                    'Discovery: File system enumeration',
+                    'Lateral Movement: SSH-based lateral movement',
+                    'Collection: Local data collection',
+                    'Exfiltration: Data exfiltration over C2',
+                    'Impact: Service disruption capabilities'
+                ],
+                stats: {
+                    victims: '20+',
+                    countries: '3+',
+                    techniques: '12',
+                    activeSince: '2021'
+                }
+            },
+            'Andariel': {
+                name: 'Andariel',
+                mitreId: 'G0138',
+                aliases: 'Silent Chollima, Stonefly, Onyx Sleet',
+                attribution: 'North Korean state-sponsored, sub-group of Lazarus Group',
+                activeSince: '2015',
+                victims: 'South Korean government, military, defense contractors, financial institutions',
+                primaryTargets: 'South Korean government, military, defense, finance sectors',
+                industries: ['Government', 'Defense', 'Finance', 'Healthcare'],
+                attackTypes: ['Espionage', 'Financial Theft', 'Ransomware'],
+                targetSelection: 'South Korean organizations and global healthcare/finance',
+                keyMalware: 'Maui ransomware, DTrack, Rifdoor, Phandoor',
+                ransomwareTies: 'Maui ransomware deployed against healthcare organizations',
+                mitreTTPs: 'T1566 (Phishing), T1486 (Ransomware), T1003 (Credential Dumping), T1021 (Remote Services)',
+                techniques: [
+                    { id: 'T1589.002', name: 'Gather Victim Identity Information: Email Addresses', tactic: 'Reconnaissance', step: 'Email harvesting', search: 'andariel reconnaissance', attackiq: 'Gather Victim Identity: Email Addresses (T1589.002)' },
+                    { id: 'T1566.001', name: 'Phishing: Spearphishing Attachment', tactic: 'Initial Access', step: 'Spearphishing', search: 'andariel spearphishing', attackiq: 'Phishing: Spearphishing Attachment (T1566.001)' },
+                    { id: 'T1204.002', name: 'User Execution: Malicious File', tactic: 'Execution', step: 'User-triggered execution', search: 'andariel malicious file', attackiq: 'User Execution: Malicious File (T1204.002)' },
+                    { id: 'T1053.005', name: 'Scheduled Task/Job: Scheduled Task', tactic: 'Persistence', step: 'Scheduled task persistence', search: 'andariel scheduled task', attackiq: 'Scheduled Task/Job: Scheduled Task (T1053.005)' },
+                    { id: 'T1078', name: 'Valid Accounts', tactic: 'Privilege Escalation', step: 'Stolen credentials', search: 'andariel valid accounts', attackiq: 'Valid Accounts (T1078)' },
+                    { id: 'T1562.001', name: 'Impair Defenses: Disable or Modify Tools', tactic: 'Defense Evasion', step: 'Disable security tools', search: 'andariel disable av', attackiq: 'Impair Defenses: Disable or Modify Tools (T1562.001)' },
+                    { id: 'T1003.001', name: 'OS Credential Dumping: LSASS Memory', tactic: 'Credential Access', step: 'Credential dumping', search: 'andariel credential dumping', attackiq: 'OS Credential Dumping: LSASS Memory (T1003.001)' },
+                    { id: 'T1082', name: 'System Information Discovery', tactic: 'Discovery', step: 'System reconnaissance', search: 'andariel system discovery', attackiq: 'System Information Discovery (T1082)' },
+                    { id: 'T1021.001', name: 'Remote Services: Remote Desktop Protocol', tactic: 'Lateral Movement', step: 'RDP lateral movement', search: 'andariel rdp', attackiq: 'Remote Services: Remote Desktop Protocol (T1021.001)' },
+                    { id: 'T1005', name: 'Data from Local System', tactic: 'Collection', step: 'Data collection', search: 'andariel data collection', attackiq: 'Data from Local System (T1005)' },
+                    { id: 'T1041', name: 'Exfiltration Over C2 Channel', tactic: 'Exfiltration', step: 'Data exfiltration', search: 'andariel exfiltration', attackiq: 'Exfiltration Over C2 Channel (T1041)' },
+                    { id: 'T1486', name: 'Data Encrypted for Impact', tactic: 'Impact', step: 'Ransomware deployment', search: 'andariel maui ransomware', attackiq: 'Data Encrypted for Impact (T1486)' }
+                ],
+                breakdown: [
+                    'Reconnaissance: Email address harvesting for targeted campaigns',
+                    'Initial Access: Spearphishing with malicious attachments',
+                    'Execution: User-triggered malware execution',
+                    'Persistence: Scheduled task creation',
+                    'Privilege Escalation: Use of stolen credentials',
+                    'Defense Evasion: Disabling antivirus and security tools',
+                    'Credential Access: LSASS memory dumping',
+                    'Discovery: System and network reconnaissance',
+                    'Lateral Movement: RDP-based lateral movement',
+                    'Collection: Local data collection',
+                    'Exfiltration: Data exfiltration over C2',
+                    'Impact: Maui ransomware deployment against healthcare'
+                ],
+                stats: {
+                    victims: '60+',
+                    countries: '10+',
+                    techniques: '12',
+                    activeSince: '2015'
+                }
+            },
+            'Aoqin Dragon': {
+                name: 'Aoqin Dragon',
+                mitreId: 'G1007',
+                aliases: 'None',
+                attribution: 'Chinese state-sponsored APT',
+                activeSince: '2013',
+                victims: 'Government, education, telecommunications in Southeast Asia and Australia',
+                primaryTargets: 'Government, education, telecommunications sectors',
+                industries: ['Government', 'Education', 'Telecommunications'],
+                attackTypes: ['Espionage', 'Data Theft'],
+                targetSelection: 'Southeast Asian and Australian organizations',
+                keyMalware: 'Mongall, Evernote backdoor, custom malware',
+                ransomwareTies: 'None - focused on espionage',
+                mitreTTPs: 'T1566 (Phishing), T1203 (Exploitation for Client Execution), T1059 (Command/Scripting)',
+                techniques: [
+                    { id: 'T1589.002', name: 'Gather Victim Identity Information: Email Addresses', tactic: 'Reconnaissance', step: 'Target reconnaissance', search: 'aoqin dragon reconnaissance', attackiq: 'Gather Victim Identity: Email Addresses (T1589.002)' },
+                    { id: 'T1566.001', name: 'Phishing: Spearphishing Attachment', tactic: 'Initial Access', step: 'Spearphishing', search: 'aoqin dragon spearphishing', attackiq: 'Phishing: Spearphishing Attachment (T1566.001)' },
+                    { id: 'T1203', name: 'Exploitation for Client Execution', tactic: 'Execution', step: 'Document exploitation', search: 'aoqin dragon exploit', attackiq: 'Exploitation for Client Execution (T1203)' },
+                    { id: 'T1547.001', name: 'Boot or Logon Autostart Execution: Registry Run Keys', tactic: 'Persistence', step: 'Registry persistence', search: 'aoqin dragon registry', attackiq: 'Boot/Logon Autostart: Registry Run Keys (T1547.001)' },
+                    { id: 'T1055', name: 'Process Injection', tactic: 'Privilege Escalation', step: 'Process injection', search: 'aoqin dragon process injection', attackiq: 'Process Injection (T1055)' },
+                    { id: 'T1027', name: 'Obfuscated Files or Information', tactic: 'Defense Evasion', step: 'Code obfuscation', search: 'aoqin dragon obfuscation', attackiq: 'Obfuscated Files or Information (T1027)' },
+                    { id: 'T1555.003', name: 'Credentials from Password Stores: Credentials from Web Browsers', tactic: 'Credential Access', step: 'Browser credential theft', search: 'aoqin dragon browser credentials', attackiq: 'Credentials from Password Stores: Web Browsers (T1555.003)' },
+                    { id: 'T1083', name: 'File and Directory Discovery', tactic: 'Discovery', step: 'File system enumeration', search: 'aoqin dragon file discovery', attackiq: 'File and Directory Discovery (T1083)' },
+                    { id: 'T1570', name: 'Lateral Tool Transfer', tactic: 'Lateral Movement', step: 'Tool transfer', search: 'aoqin dragon lateral tool transfer', attackiq: 'Lateral Tool Transfer (T1570)' },
+                    { id: 'T1005', name: 'Data from Local System', tactic: 'Collection', step: 'Data collection', search: 'aoqin dragon data collection', attackiq: 'Data from Local System (T1005)' },
+                    { id: 'T1041', name: 'Exfiltration Over C2 Channel', tactic: 'Exfiltration', step: 'Data exfiltration', search: 'aoqin dragon exfiltration', attackiq: 'Exfiltration Over C2 Channel (T1041)' },
+                    { id: 'T1565.001', name: 'Data Manipulation: Stored Data Manipulation', tactic: 'Impact', step: 'Data manipulation', search: 'aoqin dragon data manipulation', attackiq: 'Data Manipulation: Stored Data (T1565.001)' }
+                ],
+                breakdown: [
+                    'Reconnaissance: Target identification and email harvesting',
+                    'Initial Access: Spearphishing with malicious documents',
+                    'Execution: Document exploitation (CVE-2012-0158, CVE-2010-3333)',
+                    'Persistence: Registry run keys for persistence',
+                    'Privilege Escalation: Process injection techniques',
+                    'Defense Evasion: Code and file obfuscation',
+                    'Credential Access: Browser credential theft',
+                    'Discovery: File system enumeration',
+                    'Lateral Movement: Lateral tool transfer',
+                    'Collection: Local data collection',
+                    'Exfiltration: Data exfiltration over C2',
+                    'Impact: Data manipulation for espionage objectives'
+                ],
+                stats: {
+                    victims: '50+',
+                    countries: '8+',
+                    techniques: '12',
+                    activeSince: '2013'
+                }
             }
         };
 
@@ -1877,7 +2225,7 @@
             Object.keys(aptDatabase).sort().forEach(apt => {
                 const option = document.createElement('option');
                 option.value = apt;
-                option.textContent = `${apt} (${aptDatabase[apt].aliases.split(',')[0]})`;
+                option.textContent = `${apt} (${aptDatabase[apt].mitreId})`;
                 aptSelect.appendChild(option);
             });
         }
