@@ -2,6 +2,8 @@
 
 A dynamic threat intelligence dashboard for cybersecurity professionals to analyze and emulate Advanced Persistent Threat (APT) groups.
 
+🌐 **Live Demo**: [https://tweakn74.github.io/APT-Tracker-MITRE-AIQ/](https://tweakn74.github.io/APT-Tracker-MITRE-AIQ/)
+
 ## 🎯 Features
 
 - **APT Group Profiles**: Detailed information on major threat actors (FIN7, APT29, Lazarus, APT28, APT41, Wizard Spider)
@@ -16,21 +18,24 @@ A dynamic threat intelligence dashboard for cybersecurity professionals to analy
 ### Local Development
 
 1. **Clone the repository**:
+
    ```bash
    git clone https://github.com/<username>/APT-Tracker-MITRE-AIQ.git
    cd APT-Tracker-MITRE-AIQ
    ```
 
 2. **Install dependencies**:
+
    ```bash
    npm install
    ```
 
 3. **Run local development server**:
+
    ```bash
    npm run dev
    ```
-   
+
    Open [http://localhost:5500](http://localhost:5500) in your browser.
 
 ### Testing
