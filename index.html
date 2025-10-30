@@ -255,113 +255,69 @@
             border: 2px solid #cbd5e1;
         }
 
-        .matrix-wrapper {
+        .chain-wrapper {
+            min-width: max-content;
+        }
+
+        .chain-row {
             display: flex;
             gap: 15px;
-            min-width: max-content;
-            padding: 20px;
+            margin-bottom: 15px;
+            align-items: center;
         }
 
-        .tactic-column {
-            min-width: 200px;
-            max-width: 220px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .tactic-header {
-            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-            color: white;
-            padding: 12px 8px;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 0.9em;
-            border: 2px solid #475569;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
-        .techniques-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .technique-box {
-            min-height: 180px;
+        .chain-box {
+            min-width: 180px;
+            min-height: 140px;
             border-radius: 12px;
             padding: 12px;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
-            text-align: left;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
             border: 3px solid #1f2937;
             box-shadow: 0 6px 12px rgba(0,0,0,0.15);
             transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
-            background: white;
         }
 
-        .technique-box:hover {
-            transform: translateY(-5px);
+        .chain-box:hover {
+            transform: translateY(-8px);
             box-shadow: 0 12px 24px rgba(0,0,0,0.25);
         }
 
-        .technique-id {
+        .chain-box.mitre {
             background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
             color: #1f2937;
-            padding: 4px 8px;
-            border-radius: 6px;
+        }
+
+        .chain-box.steps {
+            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+            color: white;
+        }
+
+        .chain-box.search {
+            background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+            color: #1f2937;
+        }
+
+        .chain-box.attackiq {
+            background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+            color: white;
+        }
+
+        .technique-id {
             font-weight: bold;
-            font-size: 0.8em;
-            margin-bottom: 6px;
-            align-self: center;
+            font-size: 0.9em;
+            margin-bottom: 5px;
         }
 
         .technique-name {
-            font-weight: bold;
+            font-weight: 600;
             font-size: 0.85em;
-            color: #1f2937;
-            margin-bottom: 8px;
-            line-height: 1.2;
-        }
-
-        .technique-step {
-            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
-            color: white;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.75em;
-            margin-bottom: 6px;
-            width: 100%;
-            text-align: center;
-        }
-
-        .technique-search {
-            background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
-            color: #1f2937;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.7em;
-            margin-bottom: 6px;
-            width: 100%;
-            text-align: center;
-        }
-
-        .technique-attackiq {
-            background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
-            color: white;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.7em;
-            width: 100%;
-            text-align: center;
+            line-height: 1.3;
         }
 
         .no-techniques {
@@ -400,7 +356,11 @@
             line-height: 1.3;
         }
 
-        /* Arrow styles removed - no longer needed for matrix layout */
+        .arrow {
+            font-size: 2em;
+            color: #dc2626;
+            font-weight: bold;
+        }
 
         .key-points {
             background: #f0fdf4;
@@ -1144,106 +1104,39 @@
             </div>
         </div>
 
-        <!-- Attack Chain Visualization - MITRE ATT&CK Enterprise Matrix -->
+        <!-- Attack Chain Visualization -->
         <div class="attack-chain">
-            <div class="matrix-wrapper">
-                <!-- MITRE ATT&CK 14 Tactical Columns -->
-                <div class="tactic-column" id="reconnaissance">
-                    <div class="tactic-header">Reconnaissance</div>
-                    <div class="techniques-container" id="reconnaissance-techniques">
-                        <!-- Reconnaissance techniques will be inserted here -->
+            <div class="chain-wrapper">
+                <!-- Row 1: Attack Techniques (renamed from Attack Steps) -->
+                <div class="chain-row" id="stepRow">
+                    <div class="chain-box initial">
+                        <div class="technique-name">Attack<br>Techniques</div>
                     </div>
+                    <!-- Dynamic attack techniques will be inserted here (max 14 columns) -->
                 </div>
 
-                <div class="tactic-column" id="resource-development">
-                    <div class="tactic-header">Resource Development</div>
-                    <div class="techniques-container" id="resource-development-techniques">
-                        <!-- Resource Development techniques will be inserted here -->
+                <!-- Row 2: MITRE ATT&CK Techniques -->
+                <div class="chain-row" id="mitreRow">
+                    <div class="chain-box initial">
+                        <div class="technique-name">MITRE<br>Techniques</div>
                     </div>
+                    <!-- Dynamic MITRE techniques will be inserted here (max 14 columns) -->
                 </div>
 
-                <div class="tactic-column" id="initial-access">
-                    <div class="tactic-header">Initial Access</div>
-                    <div class="techniques-container" id="initial-access-techniques">
-                        <!-- Initial Access techniques will be inserted here -->
+                <!-- Row 3: Search Terms -->
+                <div class="chain-row" id="searchRow">
+                    <div class="chain-box initial">
+                        <div class="technique-name" style="font-size: 0.75em;">SIEM/EDR<br>Search Terms</div>
                     </div>
+                    <!-- Dynamic search terms will be inserted here (max 14 columns) -->
                 </div>
 
-                <div class="tactic-column" id="execution">
-                    <div class="tactic-header">Execution</div>
-                    <div class="techniques-container" id="execution-techniques">
-                        <!-- Execution techniques will be inserted here -->
+                <!-- Row 4: AttackIQ Scenario Names -->
+                <div class="chain-row" id="attackiqRow">
+                    <div class="chain-box initial">
+                        <div class="technique-name" style="font-size: 0.7em;">AttackIQ<br>Scenarios</div>
                     </div>
-                </div>
-
-                <div class="tactic-column" id="persistence">
-                    <div class="tactic-header">Persistence</div>
-                    <div class="techniques-container" id="persistence-techniques">
-                        <!-- Persistence techniques will be inserted here -->
-                    </div>
-                </div>
-
-                <div class="tactic-column" id="privilege-escalation">
-                    <div class="tactic-header">Privilege Escalation</div>
-                    <div class="techniques-container" id="privilege-escalation-techniques">
-                        <!-- Privilege Escalation techniques will be inserted here -->
-                    </div>
-                </div>
-
-                <div class="tactic-column" id="defense-evasion">
-                    <div class="tactic-header">Defense Evasion</div>
-                    <div class="techniques-container" id="defense-evasion-techniques">
-                        <!-- Defense Evasion techniques will be inserted here -->
-                    </div>
-                </div>
-
-                <div class="tactic-column" id="credential-access">
-                    <div class="tactic-header">Credential Access</div>
-                    <div class="techniques-container" id="credential-access-techniques">
-                        <!-- Credential Access techniques will be inserted here -->
-                    </div>
-                </div>
-
-                <div class="tactic-column" id="discovery">
-                    <div class="tactic-header">Discovery</div>
-                    <div class="techniques-container" id="discovery-techniques">
-                        <!-- Discovery techniques will be inserted here -->
-                    </div>
-                </div>
-
-                <div class="tactic-column" id="lateral-movement">
-                    <div class="tactic-header">Lateral Movement</div>
-                    <div class="techniques-container" id="lateral-movement-techniques">
-                        <!-- Lateral Movement techniques will be inserted here -->
-                    </div>
-                </div>
-
-                <div class="tactic-column" id="collection">
-                    <div class="tactic-header">Collection</div>
-                    <div class="techniques-container" id="collection-techniques">
-                        <!-- Collection techniques will be inserted here -->
-                    </div>
-                </div>
-
-                <div class="tactic-column" id="command-and-control">
-                    <div class="tactic-header">Command and Control</div>
-                    <div class="techniques-container" id="command-and-control-techniques">
-                        <!-- Command and Control techniques will be inserted here -->
-                    </div>
-                </div>
-
-                <div class="tactic-column" id="exfiltration">
-                    <div class="tactic-header">Exfiltration</div>
-                    <div class="techniques-container" id="exfiltration-techniques">
-                        <!-- Exfiltration techniques will be inserted here -->
-                    </div>
-                </div>
-
-                <div class="tactic-column" id="impact">
-                    <div class="tactic-header">Impact</div>
-                    <div class="techniques-container" id="impact-techniques">
-                        <!-- Impact techniques will be inserted here -->
-                    </div>
+                    <!-- Dynamic AttackIQ scenarios will be inserted here (max 14 columns) -->
                 </div>
             </div>
         </div>
@@ -1862,78 +1755,87 @@
                 </div>
             `;
 
-            // Update attack chain - MITRE ATT&CK Matrix Layout
+            // Update attack chain - 4 ROWS with exactly 14 COLUMNS each
             // Define the 14 MITRE ATT&CK tactics in order
             const tactics = [
-                'Reconnaissance',
-                'Resource Development',
-                'Initial Access',
-                'Execution',
-                'Persistence',
-                'Privilege Escalation',
-                'Defense Evasion',
-                'Credential Access',
-                'Discovery',
-                'Lateral Movement',
-                'Collection',
-                'Command and Control',
-                'Exfiltration',
-                'Impact'
+                'Reconnaissance', 'Resource Development', 'Initial Access', 'Execution',
+                'Persistence', 'Privilege Escalation', 'Defense Evasion', 'Credential Access',
+                'Discovery', 'Lateral Movement', 'Collection', 'Command and Control',
+                'Exfiltration', 'Impact'
             ];
 
-            // Clear all tactic columns first
-            tactics.forEach(tactic => {
-                const tacticId = tactic.toLowerCase().replace(/\s+/g, '-');
-                const container = document.getElementById(`${tacticId}-techniques`);
-                if (container) {
-                    container.innerHTML = '';
-                }
-            });
+            // Get row containers
+            const stepRow = document.getElementById('stepRow');
+            const mitreRow = document.getElementById('mitreRow');
+            const searchRow = document.getElementById('searchRow');
+            const attackiqRow = document.getElementById('attackiqRow');
 
-            // Group techniques by tactic
+            // Group techniques by tactic for organized display
             const techniquesByTactic = {};
+            tactics.forEach(tactic => techniquesByTactic[tactic] = []);
+
             apt.techniques.forEach(technique => {
                 const tactic = technique.tactic;
-                if (!techniquesByTactic[tactic]) {
-                    techniquesByTactic[tactic] = [];
+                if (techniquesByTactic[tactic]) {
+                    techniquesByTactic[tactic].push(technique);
                 }
-                techniquesByTactic[tactic].push(technique);
             });
 
-            // Populate ALL 14 tactic columns (including empty ones)
+            // Generate exactly 14 columns for each row
+            let stepBoxes = '';
+            let mitreBoxes = '';
+            let searchBoxes = '';
+            let attackiqBoxes = '';
+
             tactics.forEach(tactic => {
-                const tacticId = tactic.toLowerCase().replace(/\s+/g, '-');
-                const container = document.getElementById(`${tacticId}-techniques`);
+                const techniques = techniquesByTactic[tactic];
 
-                if (container) {
-                    const techniques = techniquesByTactic[tactic] || [];
+                if (techniques.length > 0) {
+                    // Use first technique for this tactic
+                    const t = techniques[0];
+                    const attackiqText = t.attackiq === 'N/A' ? 'N/A' : t.attackiq;
 
-                    if (techniques.length > 0) {
-                        // Populate with actual techniques
-                        const techniqueBoxes = techniques.map(t => {
-                            const attackiqText = t.attackiq === 'N/A' ? 'N/A' : t.attackiq;
-                            return `
-                                <div class="technique-box">
-                                    <div class="technique-id">${t.id}</div>
-                                    <div class="technique-name">${t.name}</div>
-                                    <div class="technique-step">${t.step}</div>
-                                    <div class="technique-search">${t.search}</div>
-                                    <div class="technique-attackiq">${attackiqText}</div>
-                                </div>
-                            `;
-                        }).join('');
+                    stepBoxes += `<span class="arrow">→</span><div class="chain-box steps">
+                        <div class="technique-name">${t.step}</div>
+                    </div>`;
 
-                        container.innerHTML = techniqueBoxes;
-                    } else {
-                        // Show placeholder for empty columns
-                        container.innerHTML = `
-                            <div class="no-techniques">
-                                <div class="no-techniques-text">No techniques observed</div>
-                            </div>
-                        `;
-                    }
+                    mitreBoxes += `<span class="arrow">→</span><div class="chain-box mitre">
+                        <div class="technique-id">${t.id}</div>
+                        <div class="technique-name">${t.name}</div>
+                    </div>`;
+
+                    searchBoxes += `<span class="arrow">→</span><div class="chain-box search">
+                        <div class="technique-name">${t.search}</div>
+                    </div>`;
+
+                    attackiqBoxes += `<span class="arrow">→</span><div class="chain-box attackiq">
+                        <div class="technique-name" style="font-size: 0.72em;">${attackiqText}</div>
+                    </div>`;
+                } else {
+                    // Empty column placeholders
+                    stepBoxes += `<span class="arrow">→</span><div class="chain-box steps">
+                        <div class="technique-name">N/A</div>
+                    </div>`;
+
+                    mitreBoxes += `<span class="arrow">→</span><div class="chain-box mitre">
+                        <div class="technique-name">N/A</div>
+                    </div>`;
+
+                    searchBoxes += `<span class="arrow">→</span><div class="chain-box search">
+                        <div class="technique-name">N/A</div>
+                    </div>`;
+
+                    attackiqBoxes += `<span class="arrow">→</span><div class="chain-box attackiq">
+                        <div class="technique-name">N/A</div>
+                    </div>`;
                 }
             });
+
+            // Update all 4 rows with exactly 14 columns each
+            stepRow.innerHTML = stepRow.innerHTML.split('<!-- Dynamic')[0] + stepBoxes;
+            mitreRow.innerHTML = mitreRow.innerHTML.split('<!-- Dynamic')[0] + mitreBoxes;
+            searchRow.innerHTML = searchRow.innerHTML.split('<!-- Dynamic')[0] + searchBoxes;
+            attackiqRow.innerHTML = attackiqRow.innerHTML.split('<!-- Dynamic')[0] + attackiqBoxes;
 
             // Update breakdown
             const breakdownList = document.getElementById('breakdownList');
