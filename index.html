@@ -1930,11 +1930,11 @@
             }
 
             // Helper function to map MITRE tactics to AttackIQ tactic buckets
+            // AttackIQ has 12 tactics and reorganizes some MITRE tactics into their buckets
             function getAttackIQTactic(mitreTactic) {
-                // AttackIQ has 12 tactics (missing Reconnaissance and Resource Development)
                 const tacticMap = {
-                    'Reconnaissance': 'N/A',
-                    'Resource Development': 'N/A',
+                    'Reconnaissance': 'Discovery',  // AttackIQ categorizes reconnaissance under Discovery
+                    'Resource Development': 'Initial Access',  // Resource development maps to Initial Access
                     'Initial Access': 'Initial Access',
                     'Execution': 'Execution',
                     'Persistence': 'Persistence',
@@ -1944,7 +1944,7 @@
                     'Discovery': 'Discovery',
                     'Lateral Movement': 'Lateral Movement',
                     'Collection': 'Collection',
-                    'Command and Control': 'Command And Control',
+                    'Command and Control': 'Command And Control',  // Note: AttackIQ uses "And" not "and"
                     'Exfiltration': 'Exfiltration',
                     'Impact': 'Impact'
                 };
