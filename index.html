@@ -1216,13 +1216,14 @@
             <ul>
                 <li><strong>Step 1:</strong> Login to AttackIQ platform and navigate to "Assessments"</li>
                 <li><strong>Step 2:</strong> Click "Create Custom Assessment" (don't use the <span id="aptNameTemplate">FIN7</span> template - build your own!)</li>
-                <li><strong>Step 3:</strong> For each technique in the purple AttackIQ row above, search by T-Code (e.g., T1003.001)</li>
-                <li><strong>Step 4:</strong> Select the scenario variant that best matches <span id="aptNameMethodology">FIN7's</span> methodology</li>
-                <li><strong>Step 5:</strong> Add all 12 scenarios to create a complete <span id="aptNameEmulation">FIN7</span> emulation assessment</li>
-                <li><strong>Step 6:</strong> Run the assessment against your environment to validate security controls</li>
+                <li><strong>Step 3:</strong> For each column in the matrix above, first search by the <strong>AttackIQ Tactic</strong> (bottom purple row) - e.g., "Execution", "Credential Access", "Lateral Movement"</li>
+                <li><strong>Step 4:</strong> After the tactic search loads scenarios, search for keywords from the <strong>AttackIQ Scenarios</strong> row (5th row) - e.g., "Malicious File", "Mimikatz", "PsExec"</li>
+                <li><strong>Step 5:</strong> Select the scenario variant that best matches <span id="aptNameMethodology">FIN7's</span> methodology and tools</li>
+                <li><strong>Step 6:</strong> Repeat Steps 3-5 for all 14 columns to create a complete <span id="aptNameEmulation">FIN7</span> emulation assessment</li>
+                <li><strong>Step 7:</strong> Run the assessment against your environment to validate security controls</li>
             </ul>
             <div class="pro-tip">
-                <strong>💡 Pro Tip:</strong> The T-Codes in the AttackIQ row are your search keys. Each T-Code will return multiple scenario options in AttackIQ - pick the ones using tools like Mimikatz, PowerShell, PsExec, and RDP that <span id="aptNameTools">FIN7</span> actually uses. This custom approach teaches you threat modeling better than using pre-built templates!
+                <strong>💡 Pro Tip:</strong> AttackIQ does NOT allow searching by MITRE T-Codes directly. You MUST search by <strong>AttackIQ Tactic first</strong> (e.g., "Execution"), then filter by keywords from the <strong>AttackIQ Scenarios</strong> row (e.g., "Malicious File" or "PowerShell"). For example, for Carbanak's Execution column: search "Execution" → then search "Malicious File" to find the right scenario. This two-step search process is intentional by AttackIQ to ensure you understand the tactics and techniques!
             </div>
         </div>
 
@@ -1326,7 +1327,7 @@
                     <li><strong>Step 3 - Check Active Operations:</strong> Visit Ransomware.live → Search for these groups → See recent finance sector victims</li>
                     <li><strong>Step 4 - Get Government Intelligence:</strong> Search CISA for "FIN7" or "ransomware financial" → Download IOCs and detection rules</li>
                     <li><strong>Step 5 - Deep Dive Research:</strong> Search Mandiant/CrowdStrike blogs for "FIN7 2024" → Get latest TTPs and tools</li>
-                    <li><strong>Step 6 - Build AttackIQ Assessment:</strong> Search T-codes from group profile → Select scenarios → Test your defenses</li>
+                    <li><strong>Step 6 - Build AttackIQ Assessment:</strong> Search by AttackIQ Tactic first (e.g., "Execution") → Then search scenario keywords (e.g., "Malicious File") → Select scenarios → Test your defenses</li>
                     <li><strong>Step 7 - Validate & Document:</strong> Cross-reference findings across all sources → Build threat profile → Present to stakeholders</li>
                 </ul>
                 <div class="search-example">Result: You now have a complete threat profile, recent attack data, detection rules, and testable scenarios for financial sector ransomware threats!</div>
