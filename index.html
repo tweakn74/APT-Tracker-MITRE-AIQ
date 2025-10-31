@@ -564,21 +564,23 @@
         }
 
         .breakdown h2 {
-            color: #ff6b9d;
+            color: #a78bfa; /* Updated to purple for VerseDetect color scheme */
             margin-bottom: 25px;
             font-size: 1.8em;
         }
 
+        /* Mobile-first: Single column layout */
         .breakdown-list {
             display: grid;
             gap: 15px;
+            grid-template-columns: 1fr;
         }
 
         .breakdown-item {
             background: rgba(255, 255, 255, 0.05);
             padding: 20px;
             border-radius: 10px;
-            border-left: 4px solid #c06c84;
+            border-left: 4px solid #a78bfa; /* Updated to purple for VerseDetect color scheme */
             transition: all 0.3s ease;
         }
 
@@ -588,8 +590,34 @@
         }
 
         .breakdown-item strong {
-            color: #ff6b9d;
+            color: #a78bfa; /* Updated to purple for VerseDetect color scheme */
             font-size: 1.1em;
+        }
+
+        /* Tablet: 3 columns with horizontal layout */
+        @media (min-width: 768px) {
+            .breakdown-list {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+
+            .breakdown-item {
+                border-left: none;
+                border-bottom: 4px solid #a78bfa;
+                padding: 15px;
+            }
+
+            .breakdown-item:hover {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Desktop: 5 columns with horizontal layout */
+        @media (min-width: 1024px) {
+            .breakdown-list {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 20px;
+            }
         }
 
         /* Statistics */
